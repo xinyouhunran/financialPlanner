@@ -1,0 +1,94 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/product/product",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/customer/customer",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/mine/mine",
+            "style": {
+            	"app-plus": {
+            		"titleNView": false
+            	}
+            }
+        }
+        ,{
+            "path" : "pages/im-chat/im-chat",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/ink-knife/ink-knife",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/search/search",
+            "style": {
+            	"app-plus": {
+            		"titleNView": false
+            	}
+            }
+        }
+        ,{
+            "path" : "components/compliance-certification/compliance-certification",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personal-card/personal-card",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "个人名片"
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "理财师",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"popGesture": "none" ,
+	"easycom": {
+		"autoscan": true
+	},
+	"tabBar": {
+		"color":"#FFFFFF",
+		"selectedColor":"#E4BA10",
+		"backgroundColor":"#080808",
+		"borderStyle":"black",
+		"height":"58px",
+		"list":[
+			{
+				"pagePath":"pages/index/index",
+				"text":"首页"
+			},
+			{
+				"pagePath":"pages/im-chat/im-chat",
+				"text":"聊天"
+			},
+			{
+				"pagePath":"pages/product/product",
+				"text":"产品"
+			},
+			{
+				"pagePath":"pages/customer/customer",
+				"text":"客户"
+			},
+			{
+				"pagePath":"pages/mine/mine",
+				"text":"我的"
+			}
+		]
+	}
+}

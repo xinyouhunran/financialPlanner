@@ -1,0 +1,131 @@
+body,
+html {
+	background-color: #FFFFFF;
+	font-size: 28rpx;
+	line-height: 1;
+	color: #101010;
+	/* font-family: 'sans-serif'; */
+}
+image{
+	display: block;
+	border: none;
+}
+.l-status {
+	width: 100%;
+	height: var(--status-bar-height);
+}
+/*  flex  */
+
+.l-flex {
+	display: flex;
+}
+
+.l-flex-1 {
+	flex: 1;
+}
+
+.l-flex-wrap {
+	flex-wrap: wrap;
+}
+
+.l-flex-direction {
+	flex-direction: column;
+}
+
+.l-flex-ai_c {
+	align-items: center;
+}
+
+.l-flex-as_c {
+	align-self: center;
+}
+
+.l-flex-jc_c {
+	justify-content: center;
+}
+
+.l-flex-jc_sb {
+	justify-content: space-between;
+}
+
+.l-flex-jc_sa{
+	justify-content: space-around;
+}
+
+.l-flex-ai_c-jc_c {
+	align-items: center;
+	justify-content: center;
+}
+
+.l-icon{
+	display: inline-block;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.l-txt-hidden{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.l-color-red-fw{
+	color: #E70012;font-weight: bold;
+}
+
+.l-display-block{
+	display: block;
+}
+
+.l-display-none{
+	display: none;
+}
+
+canvas{
+	position: relative;
+}
+
+.cover-view-canvas{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	color: #333333;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #FFFFFF;
+}
+
+/* 初始化样式 */
+.l-btn {
+	padding: 0;
+	margin: 0;
+	font-size: 28rpx;
+	line-height: 1;
+	border-radius: 0;
+	text-align: center;
+}
+
+.l-btn::after {
+	width: auto;
+	height: auto;
+}
+
+image,
+img {
+	vertical-align: middle;
+}
+
+.l-icon-more {
+	display: inline-block;
+	width: 26rpx;
+	height: 26rpx;
+	margin-left: 10rpx;
+}
+
+.l-swiper-img,
+uni-image.l-swiper-img > img{
+	border-radius: 30rpx;
+}
