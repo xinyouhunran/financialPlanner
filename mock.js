@@ -63,13 +63,6 @@ app.post("/uploadsecond",upload.any(),function(req,res){
     }
 })
 
-app.get("/getPrivateFunds",function(req,res){
-	let arr = [];
-	for(let i=0;i<10;i++){
-		arr.push({name:'中国',earnings:'12.50%'});
-	}
-	res.send(JSON.stringify(arr));
-})
 //buffer
 console.log(Buffer.from('liusong','ascii'));
 
@@ -108,5 +101,65 @@ async function getV(){
 }
 getV();
 
+//mock动态数据
+app.get("/getPrivateFunds",function(req,res){
+	let arr = [];
+	for(let i=0;i<10;i++){
+		arr.push({name:'中国',earnings:'12.50%'});
+	}
+	res.send(JSON.stringify(arr));
+})
+
+app.post("/getProductFeature",(req,res)=>{
+	let arr = [];
+	if(req.body.page==2){
+		for(let i=0;i<3;i++){
+			arr.push({
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'+6.88',
+				latestnet:'1.4530',
+				netchange:'1年1个月'
+				});
+		}
+	}else{
+		for(let i=0;i<3;i++){
+			arr.push({
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'+6.88',
+				latestnet:'1.4530',
+				netchange:'8年6个月'
+				});
+		}
+	}
+	res.send(JSON.stringify(arr));
+})
+
+app.post("/getMainFeature",(req,res)=>{
+	let arr = [];
+	if(req.body.id==3){
+		for(let i=0;i<3;i++){
+			arr.push({
+				content:'庵后覅玻尿酸房间爱不是的房价看哈水电费空间哈时代峰峻还款时间的发挥空间啊的说法复活甲',
+				title:'国事直通车',
+				time:'一小时前',
+				img:'../../static/1577935511@2x.png',
+				});
+		}
+	}else{
+		for(let i=0;i<3;i++){
+			arr.push({
+				content:'庵后覅玻尿酸房间爱不是的房价看哈水电费空间哈时代峰峻还款时间的发挥空间啊的说法复活甲',
+				title:'国事直通车',
+				time:'两小时前',
+				img:'../../static/1577935511@2x.png',
+				});
+		}
+	}
+	res.send(JSON.stringify(arr));
+})
 app.listen(1701);
 console.log("开启服务器");

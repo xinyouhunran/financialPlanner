@@ -53,20 +53,24 @@ const $api = {
 	// 正常请求
 	post: function(url, data, option = {}) {
 		let param = data ? data : {};
-		if (util.$getStorage('token')) {
+		/* if (util.$getStorage('token')) {
 			param.userAuthToken = util.$getStorage('token');
 		}
-		param.frequentNo = +new Date();
+		param.frequentNo = +new Date(); */
 		return new Promise((resolve, reject) => {
 			uni.request({
 				url: (option.baseUrl ? option.baseUrl : base.$baseUrl) + url,
 				data: param,
-				header: {
+				/* header: {
 					'content-type': 'application/json;charset=UTF-8'
+				}, */
+				header: {
+					'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
 				},
 				method: 'POST',
 				success(res) {
-					if (res.data && res.data.code == '200') {
+					resolve(res.data)
+					/* if (res.data && res.data.code == '200') {
 						resolve(res.data)
 					} else {
 						if (res.data && res.data.code == '404') {
@@ -80,7 +84,7 @@ const $api = {
 							util.$toast(res.data.message);
 							resolve(res.data);
 						}
-					}
+					} */
 				},
 				fail(err) {
 					util.$toast('请求失败');

@@ -63,31 +63,41 @@
 		"autoscan": true
 	},
 	"tabBar": {
-		"color":"#FFFFFF",
-		"selectedColor":"#E4BA10",
-		"backgroundColor":"#080808",
-		"borderStyle":"black",
-		"height":"58px",
+		"color":"#7A7A7A",
+		"selectedColor":"#292B66",
+		"backgroundColor":"#FFFFFF",
+		"borderStyle":"white",
+		"height":"49px",
 		"list":[
 			{
 				"pagePath":"pages/index/index",
-				"text":"首页"
+				"text":"首页",
+				"iconPath":"static/sy2@3x.png",
+				"selectedIconPath":"static/sy1@3x.png"
 			},
 			{
 				"pagePath":"pages/im-chat/im-chat",
-				"text":"聊天"
+				"text":"在售",
+				"iconPath":"static/zs2@3x.png",
+				"selectedIconPath":"static/zs1@3x.png"
 			},
 			{
 				"pagePath":"pages/product/product",
-				"text":"产品"
+				"text":"展业",
+				"iconPath":"static/zy2@3x.png",
+				"selectedIconPath":"static/zy1@3x.png"
 			},
 			{
 				"pagePath":"pages/customer/customer",
-				"text":"客户"
+				"text":"资讯",
+				"iconPath":"static/zx2@3x.png",
+				"selectedIconPath":"static/zx1@3x.png"
 			},
 			{
 				"pagePath":"pages/mine/mine",
-				"text":"我的"
+				"text":"我的",
+				"iconPath":"static/wd2@3x.png",
+				"selectedIconPath":"static/wd1@3x.png"
 			}
 		]
 	}
