@@ -32,7 +32,7 @@
 		</view> -->
 		
 		<image :src="imgurl" mode="aspectFill" @longpress="saveImage"></image>
-		<canvas canvas-id="mycanvas" style="width: 590rpx;height: 998rpx;" v-show="canvasShow"></canvas>
+		<canvas canvas-id="mycanvas" style="width: 590rpx;height: 996rpx;" v-show="canvasShow"></canvas>
 		
 	</view>
 </template>
@@ -157,7 +157,7 @@
 <style scoped lang="scss">
 	image{
 		width: 99%;
-		min-height: 996rpx;
+		height: 99%; 
 		border: 1px solid #BBBBBB;
 	}
 .pc-container{

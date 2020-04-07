@@ -1,4 +1,4 @@
-const $baseUrl = 'http://localhost:1701/'//'http://112.74.30.157:9090/';
+const $baseUrl = 'http://112.74.30.157:9090/'//'http://localhost:1701/';
 
 const $avatar = 'http://47.105.69.23/file/default.png';
 

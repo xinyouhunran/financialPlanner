@@ -1,0 +1,53 @@
+.l-container{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	background-color: #FFFFFF;
+}
+
+.l-tab{
+	box-sizing: border-box;
+	padding: 0 44rpx;
+	width: 100%;
+	height: 96rpx;
+	display: flex;
+	align-items: center;
+	border-bottom: 1rpx solid #EDEDED;
+	justify-content: space-between;
+}
+
+.l-tab-item{
+	box-sizing: border-box;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	transition: all 0.3s;
+	border-bottom: 4rpx solid transparent;
+}
+
+.l-tab-active{
+	font-weight: bold;
+	border-bottom: 4rpx solid #1C1C1C;
+}
+
+.l-swiper{
+	width: 100%;
+	height: calc(100% - 96rpx);
+}
+
+.swiper-item{
+	width: 100%;
+	height: 100%;
+}
+
+.example-body{
+	height: 96rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

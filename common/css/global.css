@@ -9,10 +9,19 @@ html {
 image{
 	display: block;
 	border: none;
+	width: 100%;
+	height: 100%;
 }
 .l-status {
 	width: 100%;
 	height: var(--status-bar-height);
+}
+.l-view{
+	padding-left: 24rpx;
+	padding-right: 24rpx;
+}
+.l-bb{
+	border-bottom: 2rpx solid #F4F4F4;
 }
 /*  flex  */
 

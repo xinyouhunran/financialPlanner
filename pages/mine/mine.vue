@@ -10,7 +10,7 @@
 					<view class="l-title-t">
 						用户中心
 					</view>
-					<view class="l-title-icon2">
+					<view class="l-title-icon2" @tap="$nav({url:'/pages/mine/setting'})">
 						
 					</view>
 					<view class="l-title-icon3" @tap="$nav({url:'/pages/index/index'},'switchTab')">

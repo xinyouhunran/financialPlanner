@@ -84,7 +84,8 @@ const $toast = (str, option) => {
 	uni.showToast({
 		title: str,
 		icon: 'none',
-		duration: option.duration ? option.duration : 2000
+		duration: option.duration ? option.duration : 2000,
+		success: option.fn?option.fn:()=>{}
 	})
 }
 

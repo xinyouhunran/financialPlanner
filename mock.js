@@ -8,6 +8,8 @@ var querystring  = require("querystring");
 var http = require('http');
 var fs = require('fs');
 
+var process = require('process');
+
 app.use(express.static('../static'));
 //要用req.body,需要引入此模块
 var bodyParser = require("body-parser");
@@ -29,6 +31,17 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage:storage
 })
+
+//node
+async function print(path) {
+  const dir = await fs.promises.opendir(path);
+  for await (const dirent of dir) {
+    console.log(dirent.name);
+  }
+}
+//print('/').catch(console.error);
+
+//请求
 
 app.all("/*", function(req, res, next) {
     // 跨域处理
@@ -163,3 +176,4 @@ app.post("/getMainFeature",(req,res)=>{
 })
 app.listen(1701);
 console.log("开启服务器");
+//console.log(process.env);

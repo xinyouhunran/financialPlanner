@@ -51,6 +51,101 @@
 				"navigationBarTitleText": "个人名片"
 			}
         }
+        ,{
+            "path" : "pages/notification/notification",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "消息通知"
+			}
+        }
+        ,{
+            "path" : "pages/information/information",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "路演资讯通知",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
+		,{
+		    "path" : "pages/road/road-details",
+		    "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		}
+        ,{
+            "path" : "pages/ranking/ranking",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/finance-report/finance-report",
+            "style" : {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "早报要闻",
+				"navigationBarBackgroundColor": "#2D3270"
+			}
+        }
+        ,{
+            "path" : "pages/onsale/onsale",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }
+		,{
+		    "path" : "pages/mine/update-pwd",
+		    "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "修改密码",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		}
+        ,{
+            "path" : "pages/mine/setting",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "设置",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
+        ,{
+            "path" : "pages/feedback/feedback",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "意见反馈",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
+        ,{
+            "path" : "pages/approve/approve",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "合格投资者认证",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
+		,{
+            "path" : "pages/attention/attention",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "我的关注",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
+        ,{
+            "path" : "pages/mine/aboutus",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "关于融总管",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -76,7 +171,7 @@
 				"selectedIconPath":"static/sy1@3x.png"
 			},
 			{
-				"pagePath":"pages/im-chat/im-chat",
+				"pagePath":"pages/onsale/onsale", 
 				"text":"在售",
 				"iconPath":"static/zs2@3x.png",
 				"selectedIconPath":"static/zs1@3x.png"
@@ -88,7 +183,7 @@
 				"selectedIconPath":"static/zy1@3x.png"
 			},
 			{
-				"pagePath":"pages/customer/customer",
+				"pagePath":"pages/information/information",
 				"text":"资讯",
 				"iconPath":"static/zx2@3x.png",
 				"selectedIconPath":"static/zx1@3x.png"

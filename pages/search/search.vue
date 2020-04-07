@@ -1,156 +1,44 @@
 <template>
-	<view class="search-container">
-		<view class="l-titleNView-fixed">
-			<view class="l-status"></view>
-			<view class="l-titleNView-content l-flex l-flex-ai_c">
-				<view class="l-titleNView-nav l-flex l-flex-ai_c" >
-					<view class="l-title-icon1" @tap="$back(1)">
-						
+	<view>
+		<view class="search">
+			<view class="l-flex l-view rank-search l-flex-ai_c l-flex-jc_sb">
+				<!-- <view class="backwhite" @tap="$back(1)">
+					<image src="../../static/backwhite@2x.png" mode=""></image>
+				</view> -->
+				<!-- <view class="rank-input l-flex">
+					<span class="l-icon l-icon-search"></span>
+					<view class="af">
+						搜产品/人脉/资讯
 					</view>
-					<view class="l-titleNView-form" >
-						<input class="l-titleNView-input" type="text" placeholder="用户/产品搜索" v-model="searchText"/>
-					</view>
-					<view class="" @tap="search">
-						<view class="l-title-icon3">
-							
-						</view>
-						<text class="l-title-text">搜索</text>
-					</view>
+				</view> -->
+				<input type="text" value="" placeholder="搜产品/人脉/资讯" placeholder-style="color:#afafaf;" class="rank-input"/>
+				<view class="cancel">
+					取消
 				</view>
 			</view>
 		</view>
-		<view class="">
-			<view class="l-status"></view>
-			<view class="l-title-zhanwei"></view>
-			<view class="sbt sbb customer">
-				<view class="title">
-					客户
-				</view>
-				<template v-if="customerList.length">
-					<view class="l-flex intro" v-for="(v,i) in customerList" :key='i' :class="{sbb:i!=customerList.length-1}">
-						<image src="../../static/logo.png" mode="aspectFill"></image>
-						<view class="l-flex l-flex-direction mes">
-							<view v-html="v.name" class="name"></view>
-							<view class="birth">生日：<text v-text="v.birth"></text></view>
-							<view class="addTime">添加时间：<text v-text="v.addTime"></text></view>
-						</view>
-						<view class="l-flex l-flex-1 l-flex-direction l-flex-ai_c l-flex-jc_sb">
-							<template>
-								<view v-if="online" class="online">在线</view>
-								<view class="beforeHour" v-else>
-									几小时前
-								</view>
-							</template>
-							<view class="chat">
-								聊天
-							</view>
-						</view>
-					</view>
-				</template>
-				<template v-else>
-					<view>空</view>
-				</template>
+		<view class="l-status"></view>
+		<view class="search-zhanwei"></view>
+		<view class="history-sea l-view">
+			<view class="l-flex l-flex-jc_sb">
+				<text class="tit">历史搜索</text>
+				<image src="../../static/delete@2x.png" mode=""></image>
 			</view>
-			
-			<view class="sbt sbb private-funds">
-				<view class="title">
-					私募基金
-				</view>
-				<template>
-					<view class="l-flex private-item sbb l-flex-jc_sb l-flex-ai_c" v-for="(v,i) in privatefundsList" :key='i'>
-						<view class="ileft">{{v.name}}</view>
-						<view class="iright">累计收益：{{v.earnings}}</view>
-					</view>
-				</template>
-				<view class="l-flex l-flex-jc_c private-item" @tap="showMore">
-					更多优质基金>
-				</view>
+			<view class="tag-list l-flex">
+				<view class="tag">私募证券</view>
+				<view class="tag">信托</view>
+				<view class="tag">过期信托-信德38号</view>
 			</view>
-			
-			<view class="sbt sbb public-funds">
-				<view class="title">
-					公募基金
-				</view>
-				<template>
-					<view class="l-flex private-item l-flex-jc_sb l-flex-ai_c" v-for="(v,i) in publicfundsList" :key='i' :class="{sbb:i!=publicfundsList.length-1}">
-						<view class="ileft">{{v.name}}</view>
-						<view class="iright">累计收益：{{v.earnings}}</view>
-					</view>
-				</template>
+		</view>
+		<view class="hot-sea l-view">
+			<view class="l-flex l-flex-jc_sb">
+				<text class="tit">热门搜索</text>
 			</view>
-			
-			<view class="sbt sbb company">
-				<view class="title">
-					公司
-				</view>
-				<template>
-					<view class="l-flex company-item" v-for="(v,i) in companyList" :key='i' :class="{sbb:i!=companyList.length-1}">
-						<image :src="v.imgSrc" mode="aspectFill"></image>
-						<view class="l-flex l-flex-direction l-flex-jc_sb l-flex-1">
-							<view class="company-name">
-								{{v.name}}
-							</view>
-							<view class="l-flex l-flex-jc_sb">
-								<view class="iright">
-									{{v.setTime}}年成立
-								</view>
-								<view class="iright">
-									代表产品：{{v.product}}
-								</view>
-							</view>
-						</view>
-					</view>
-				</template>
+			<view class="tag-list l-flex">
+				<view class="tag">私募证券</view>
+				<view class="tag">信托</view>
+				<view class="tag">过期信托-信德38号</view>
 			</view>
-			
-			<view class="sbt sbb insurance">
-				<view class="title">
-					保险
-				</view>
-				<template>
-					<view class="l-flex company-item" v-for="(v,i) in companyList" :key='i' :class="{sbb:i!=companyList.length-1}">
-						<image :src="v.imgSrc" mode="aspectFill"></image>
-						<view class="l-flex l-flex-direction l-flex-jc_sb l-flex-1">
-							<view class="company-name">
-								{{v.name}}
-							</view>
-							<view class="l-flex l-flex-jc_sb">
-								<view class="iright">
-									{{v.setTime}}年成立
-								</view>
-								<!-- <view class="iright">
-									代表产品：{{v.product}}
-								</view> -->
-							</view>
-						</view>
-					</view>
-				</template>
-			</view>
-			
-			<view class="sbt sbb other">
-				<view class="title">
-					其他
-				</view>
-				<template>
-					<view class="l-flex company-item" v-for="(v,i) in companyList" :key='i' :class="{sbb:i!=companyList.length-1}">
-						<image :src="v.imgSrc" mode="aspectFill"></image>
-						<view class="l-flex l-flex-direction l-flex-jc_sb l-flex-1">
-							<view class="company-name">
-								{{v.name}}
-							</view>
-							<view class="l-flex l-flex-jc_sb">
-								<view class="iright">
-									{{v.setTime}}年成立
-								</view>
-								<!-- <view class="iright">
-									代表产品：{{v.product}}
-								</view> -->
-							</view>
-						</view>
-					</view>
-				</template>
-			</view>
-			
 		</view>
 	</view>
 </template>
@@ -228,155 +116,75 @@
 </script>
 
 <style scoped lang="scss">
-.search-container{
+.cancel{
+	font-size: 16px;
+}
+.search{
+	background-color: #EDEDED;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	padding-top: var(--status-bar-height);
+}
+.search-zhanwei{
+	height: 90rpx;
+}
+.backwhite{
+	width: 21rpx;
+	height: 37rpx;
+}
+.rank-search{
+	padding: 16rpx 24rpx;
+}
+.rank-input{
+	width: 528rpx;
+	background: url(~@/static/sousuo@2x.png) 10px center no-repeat;
 	background-color: #FFFFFF;
-	margin-bottom: 188rpx;
-	.l-titleNView {
-		width: 100%;
-	}
-	
-	.l-titleNView-fixed{
-		position: fixed;
-		z-index: 800;
-		top: 0;
-		left: 0;
-		width: 100%;
-		background-color: #2B2A2A;
-	}
-	
-	.l-titleNView-content {
-		height: 116rpx;	
-	}
-	.l-title-icon1{
-		width: 48rpx;
-		height: 48rpx;
-		border: 1px solid #FFFFFF;
-		margin-left: 32rpx;
-	}
-	.l-title-icon2{
-		width: 64rpx;
-		height: 64rpx;
-		border: 1px solid #FFFFFF;
-		margin-left: 30rpx;
-	}
-	.l-title-icon3{
-		width: 48rpx;
-		height: 48rpx;
-		border: 1px solid #FFFFFF;
-		margin-left: 36rpx;
-		align-self: flex-start;
-	}
-	.l-title-text{
-		margin-left: 36rpx;
-		color: #FFFFFF;
-		font-size: 20rpx;
-		display: inline-block;
-		width: 48rpx;
-		text-align: center;
-	}
-	.l-titleNView-form{
-		width: 516rpx;
-		height: 72rpx;
-		border-radius: 36rpx;
-		background-color: #FFFFFF;
-		margin-left: 30rpx;
-	}
-	.l-titleNView-input{
-		width: 100%;
-		height: 100%;
-		color: #101010;
-		font-size: 28rpx;
-		padding: 0 36rpx;
-	}
-	.l-title-zhanwei{
-		height: 116rpx;
-	}
-	.sbb{
-		border-bottom: 1px solid #BBBBBB;
-	}
-	.sbt{
-		border-top: 1px solid #BBBBBB;
-	}
-	.title{
-		font-weight: bold;
-	}
-	.customer{
-		padding: 28rpx 0 0 66rpx;
-		.intro{
-			padding: 30rpx 0;
-		}
-		.mes{
-			margin-left: 36rpx;
-			color: #979393;
-		}
-		.name{
-			margin-bottom: 6rpx;
-			font-size: 24rpx;
-		}
-		.birth,.addTime{
-			font-size: 24rpx;
-			margin-bottom: 2rpx;
-		}
-		.online,.beforeHour{
-			position: relative;
-		}
-		.online::before, .beforeHour::before{
-			content: '';
-			width: 10rpx;
-			height: 10rpx;
-			position: absolute;
-			right: 20rpx;
-			left: -20rpx;
-			top: 8rpx;
-			border-radius: 10rpx;
-		}
-		.online::before{
-			background-color: #1E953C;
-		}
-		.beforeHour::before{
-			background-color: #979393;
-		}
-		.chat{
-			width: 80rpx;
-			height: 34rpx;
-			border: 1px solid #101010;
-			text-align: center;
-			line-height: 17px;
-		}
-	}
-	.private-funds,.public-funds,.company,.insurance,.other{
-		padding: 28rpx 0 0 66rpx;
-		margin-top: 20rpx;
-		font-size: 24rpx;
-		.private-item{
-			padding: 36rpx 0;
-		}
-		.company-item{
-			padding: 38rpx 0;
-			image{
-				margin-right: 36rpx;
-			}
-		}
-		.ileft{
-			width: 330rpx;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: pre;
-		}
-		.iright{
-			margin-right: 44rpx;
-			color: #979393;
-		}
-		.company-name{
-			font-size: 12px;
-			font-weight: bold;
-		}
-	}
-	
-	image{
-		width: 74rpx;
-		height: 74rpx;
+	background-size: 30rpx 30rpx;
+	border-radius: 30rpx;
+	padding: 8rpx 20rpx;
+	padding-left: 60rpx;
+	font-size: 12px;
+	.af{
+		color: #afafaf;
+		font-size: 12px;
 	}
 }
-
+.l-icon-search{
+	width: 30rpx;
+	height: 30rpx;
+	margin-right: 11rpx;
+	background-image: url('~@/static/sousuo@2x.png');
+}
+.l-body-view-1{
+	position: fixed;
+	top: 192rpx;
+}
+.l-body-view-2{
+	margin-top: 292rpx;
+}
+.history-sea,.hot-sea{
+	padding: 30rpx 24rpx;
+	image{
+		width: 27rpx;
+		height: 29rpx;
+	}
+	
+}
+.tit{
+	font-size: 16px;
+	color: #828282;	
+}
+.tag-list{
+	margin-top: 30rpx;
+}
+.tag{
+	padding: 8rpx 17rpx;
+	border: 1px solid #E70012;
+	border-radius: 18rpx;
+	color: #E70012;
+	font-size: 12px;
+	margin-right: 20rpx;
+}
 </style>
