@@ -11,14 +11,39 @@
 						搜产品/人脉/资讯
 					</view>
 				</view> -->
-				<input type="text" value="" placeholder="搜产品/人脉/资讯" placeholder-style="color:#afafaf;" class="rank-input"/>
-				<view class="cancel">
+				<input ref="sea" type="text" v-model="searchText" placeholder="搜产品/资讯" placeholder-style="color:#afafaf;" class="rank-input" 
+				@confirm="confirm()" :confirm-hold="true"
+				@blur="blurSearch()"/>
+				<view class="cancel" @tap="$back(1)">
 					取消
+				</view>
+				<view class="clear" v-if="searchText" @tap="clear">
+					<image src="../../static/clear@2x.png" mode=""></image>
 				</view>
 			</view>
 		</view>
 		<view class="l-status"></view>
 		<view class="search-zhanwei"></view>
+		
+		<view class="l-view" v-if="alreadySearch">
+			<template v-if="customerList.length">
+				<view class="l-flex l-flex-ai_c l-flex-jc_sb searchList" v-for="(v,i) in customerList" :key="i">
+					<view v-html="v.name">
+					</view>
+					<view class="color82">
+						私募
+					</view>
+				</view>
+			</template>
+			<template v-else>
+				<view class="l-flex l-flex-ai_c l-flex-jc_sb searchList">
+					<view class="color82">
+						未搜索到您要的结果
+					</view>
+				</view>
+			</template>
+		</view>
+		
 		<view class="history-sea l-view">
 			<view class="l-flex l-flex-jc_sb">
 				<text class="tit">历史搜索</text>
@@ -47,6 +72,7 @@
 	export default {
 		data() {
 			return {
+				alreadySearch:false,
 				searchText:'',
 				customerList:[],
 				online:true,
@@ -100,6 +126,7 @@
 					return v;
 				});
 				this.customerList.push(...res1);
+				this.alreadySearch = true;
 			},
 			showMore(){
 				this.$get(
@@ -110,12 +137,35 @@
 					}).catch(err =>{
 						console.log(err);
 					})
+			},
+			confirm(){
+				uni.hideKeyboard();
+				this.search();
+			},
+			blurSearch(){
+
+			},
+			clear(){
+				this.searchText = '';
 			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
+.color82{
+	color: #828282;
+}
+.searchList{
+	height: 88rpx;
+	border-bottom: 1px solid #F4F4F4;
+}
+.clear{
+	width: 28rpx;
+	height: 28rpx;
+	position: absolute;
+	right: 136rpx;
+}
 .cancel{
 	font-size: 16px;
 }

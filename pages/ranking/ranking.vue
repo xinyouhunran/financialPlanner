@@ -167,7 +167,8 @@
 	width: 88%;
 	background-color: #FFFFFF;
 	border-radius: 30rpx;
-	padding: 15rpx 20rpx;
+	height: 58rpx;
+	line-height: 58rpx;
 	.af{
 		color: #afafaf;
 		font-size: 12px;
@@ -176,7 +177,7 @@
 .l-icon-search{
 	width: 30rpx;
 	height: 30rpx;
-	margin-right: 11rpx;
+	margin: 14rpx 10rpx;
 	background-image: url('~@/static/sousuo@2x.png');
 }
 .l-body-view-1{

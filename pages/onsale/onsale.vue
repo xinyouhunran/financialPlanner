@@ -4,15 +4,15 @@
 			<view class="sale-search l-flex">
 				<span class="l-icon l-icon-search"></span>
 				<view class="af">
-					请输入基金/经理/公司名称搜索
+					请输入产品
 				</view>
 			</view>
 		</view>
 		
 		<view class="screen l-flex l-flex-jc_sa l-flex-ai_c">
-			<view class="">
+			<view class="screen-item">
 				<view class="l-flex l-flex-ai_c">
-					<view class="">
+					<view class="" @tap="tab=1">
 						智能推荐
 					</view>
 					<image src="../../static/down@2x.png" mode=""></image>
@@ -21,9 +21,9 @@
 					
 				</view>
 			</view>
-			<view class="">
+			<view class="screen-item">
 				<view class="l-flex l-flex-ai_c">
-					<view class="">
+					<view class="" @tap="tab=2">
 						筛选
 					</view>
 					<image src="../../static/down@2x.png" mode=""></image>
@@ -54,7 +54,7 @@
 				</view>
 				<view class="l-flex middle">
 					<text>{{item.netchange}}</text>
-					<text>{{item.latestnet}}</text>
+					<text class="danwei">{{item.latestnet}}</text>
 					<text :class="{'red':item.earnings>0,'green':item.earnings<0}">{{item.earnings}}%</text>
 				</view>
 				<view class="l-flex l-flex-jc_sb bottom l-bb">
@@ -64,6 +64,10 @@
 				</view>
 			</view>
 		</view>
+		
+		<view class="onsale-mask">
+			
+		</view>
 	</view>
 </template>
 
@@ -71,8 +75,56 @@
 	export default {
 		data() {
 			return {
-				tab:2,
+				tab:1,
 				productFeature:[{
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'+6.88',
+				latestnet:'1.4530',
+				netchange:'2020-03-20',
+				time:'03-24 12:00'
+				},{
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'-6.88',
+				latestnet:'1.4530',
+				netchange:'2020-03-20',
+				time:'03-24 12:00'
+				},{
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'0.00',
+				latestnet:'1.4530',
+				netchange:'2020-03-20',
+				time:'03-24 12:00'
+				},{
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'+6.88',
+				latestnet:'1.4530',
+				netchange:'2020-03-20',
+				time:'03-24 12:00'
+				},{
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'-6.88',
+				latestnet:'1.4530',
+				netchange:'2020-03-20',
+				time:'03-24 12:00'
+				},{
+				name:'中战宏观对冲2号',
+				tag1:'精选',
+				tag2:'股票策略',
+				earnings:'0.00',
+				latestnet:'1.4530',
+				netchange:'2020-03-20',
+				time:'03-24 12:00'
+				},{
 				name:'中战宏观对冲2号',
 				tag1:'精选',
 				tag2:'股票策略',
@@ -119,17 +171,17 @@
 .sale-search{
 	width: 700rpx;
 	background-color: #FFFFFF;
-	padding: 15rpx 0;
+	line-height: 29px;
+	height: 29px;
 	border-radius: 30rpx;
 }
 .l-icon-search{
 		width: 30rpx;
 		height: 30rpx;
-		margin: 0 20rpx;
+		margin: 14rpx 20rpx;
 		background-image: url('~@/static/sousuo@2x.png');
 }
 .screen{
-	height: 100rpx;
 	background-color: #FFFFFF;
 	position: fixed;
 	top: calc(90rpx + var(--status-bar-height));
@@ -140,6 +192,10 @@
 		width: 24rpx;
 		height: 13rpx;
 		margin-left: 15rpx;
+	}
+	.screen-item{
+		margin-top: 36rpx;
+		margin-bottom: 4px;
 	}
 	.recom,.recom1{
 		width: 76rpx;
@@ -183,6 +239,7 @@
 	text-align: center;
 	font-size: 28rpx;
 	margin: 0 10rpx;
+	border-radius: 4rpx;
 }
 .product_all_list .r{
 	border: 1px solid #e70012;
@@ -192,6 +249,7 @@
 	text-align: center;
 	line-height: 30rpx;
 	height: 30rpx;
+	padding: 0 3px;
 }
 .product_all_list .middle{
 	font-size: 18px;
@@ -203,13 +261,16 @@
 .product_all_list .middle .green{
 	color: green;
 }
+.product_all_list .middle text:nth-of-type(1){
+	width: 280rpx;
+}
 .product_all_list .middle text:nth-of-type(3){
 	display: flex;
 	flex: 1;
 	justify-content: flex-end;
 }
-.product_all_list .middle text:nth-of-type(2){
-	margin-left: 100rpx;
+.product_all_list .middle .danwei{
+	margin-left: 16rpx;
 }
 .product_all_list .bottom{
 	font-size: 13px;

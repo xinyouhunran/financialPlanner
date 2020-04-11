@@ -55,7 +55,7 @@
 					</view>
 					<view @tap="$nav({url:'/pages/ranking/ranking'})">
 						<image src="../../static/11@2x.png" mode=""></image>
-						<text>排行榜单</text>
+						<text>产品排行</text>
 					</view>
 					<view>
 						<image src="../../static/666@2x.png" mode=""></image>
@@ -75,9 +75,9 @@
 						<image src="../../static/77@2x.png" mode=""></image>
 						<text>资产助手</text>
 					</view>
-					<view>
+					<view @tap="$nav({url:'/pages/cash-baby/cash-baby'})">
 						<image src="../../static/88@2x.png" mode=""></image>
-						<text>收益记账</text>
+						<text>活期理财</text>
 					</view>
 					<view @tap="$nav({url:'/pages/attention/attention'})">
 						<image src="../../static/10@2x.png" mode=""></image>
@@ -129,6 +129,85 @@
 				</view>
 			</view> -->
 			<view class="l-view">
+				<view class="sentiment-all pl pr">
+					<view class="l-flex l-flex-jc_sb l-flex-ai_c product_all_t">
+						<view class="titleleft">
+							人气爆款
+						</view>
+						<view class="titlemore">
+							刷新
+						</view>
+					</view>
+				</view>
+				
+				<view class="sentiment">
+					<view class="l-flex l-flex-jc_sb l-flex-ai_c l-bb sentiment-item">
+						<view class="sentiment-l">
+							<image src="../../static/zhexian@2x.png" mode=""></image>
+						</view>
+						<view class="sentiment-m">
+							<view class="">
+								+6.88%
+							</view>
+							<view class="">
+								近一年收益率
+							</view>
+						</view>
+						<view class="sentiment-r">
+							<view class="">
+								<span>收益加倍</span>
+							</view>
+							<view class="">
+								<span>国连安基金</span>
+							</view>
+						</view>
+					</view>
+					<view class="l-flex l-flex-jc_sb l-flex-ai_c l-bb sentiment-item">
+						<view class="sentiment-l">
+							<image src="../../static/zhexian@2x.png" mode=""></image>
+						</view>
+						<view class="sentiment-m">
+							<view class="">
+								+6.88%
+							</view>
+							<view class="">
+								近一年收益率
+							</view>
+						</view>
+						<view class="sentiment-r">
+							<view class="">
+								<span>收益加倍</span>
+							</view>
+							<view class="">
+								<span>广发稳健长…</span>
+							</view>
+						</view>
+					</view>
+					<view class="l-flex l-flex-jc_sb l-flex-ai_c l-bb sentiment-item">
+						<view class="sentiment-l">
+							<image src="../../static/zhexian@2x.png" mode=""></image>
+						</view>
+						<view class="sentiment-m">
+							<view class="">
+								+6.88%
+							</view>
+							<view class="">
+								近一年收益率
+							</view>
+						</view>
+						<view class="sentiment-r">
+							<view class="">
+								<span>收益兼备</span>
+							</view>
+							<view class="">
+								<span>广发稳健长大</span>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			
+			<view class="l-view">
 				<view class="product_all pl pr">
 					<view class="l-flex l-flex-jc_sb l-flex-ai_c product_all_t">
 						<view class="titleleft">
@@ -163,14 +242,14 @@
 							<template v-else>
 								<text>{{item.earnings}}%</text>c
 							</template> -->
-							<text :class="{'red':item.earnings>0,'green':item.earnings<0}">{{item.earnings}}%</text>
-							<text>{{item.latestnet}}</text>
 							<text>{{item.netchange}}</text>
+							<text>{{item.latestnet}}</text>
+							<text :class="{'red':item.earnings>0,'green':item.earnings<0}">{{item.earnings}}%</text>
 						</view>
 						<view class="l-flex l-flex-jc_sb bottom l-bb">
-							<text>累计收益</text>
-							<text>最新净值</text>
-							<text>成立时长</text>
+							<text>理财师</text>
+							<text>净值(03-27)</text>
+							<text>近一年涨幅</text>
 						</view>
 					</view>
 				</view>
@@ -239,7 +318,7 @@
 				tag2:'股票策略',
 				earnings:'+6.88',
 				latestnet:'1.4530',
-				netchange:'1年1个月',
+				netchange:'风车车',
 				time:'03-24 12:00'
 				},{
 				name:'中战宏观对冲2号',
@@ -247,7 +326,7 @@
 				tag2:'股票策略',
 				earnings:'-99.90',
 				latestnet:'1.4530',
-				netchange:'12年12个月',
+				netchange:'风车车',
 				time:'03-24 12:00'
 				},{
 				name:'中战宏观对冲2号',
@@ -255,7 +334,7 @@
 				tag2:'股票策略',
 				earnings:'0.00',
 				latestnet:'1.4530',
-				netchange:'1年1个月',
+				netchange:'汤姆',
 				time:'03-24 12:00'
 				}],//产品精选
 				
@@ -265,10 +344,15 @@
 					{name:'独家解读',id:0},
 					{name:'大咖专访',id:1},
 					{name:'总管商学院',id:2},
-					{name:'全部',id:3},
+					/* {name:'全部',id:3}, */
 					],
-				zxzklabelListIndex:3,
+				zxzklabelListIndex:0,
 				mainFeature:[{
+				content:'庵后覅玻尿酸房间爱不是的房价看哈水电费空间哈时代峰峻还款时间的发挥空间啊的说法复活甲',
+				title:'国事直通车',
+				time:'一小时前',
+				img:'../../static/1577935511@2x.png',
+				},{
 				content:'庵后覅玻尿酸房间爱不是的房价看哈水电费空间哈时代峰峻还款时间的发挥空间啊的说法复活甲',
 				title:'国事直通车',
 				time:'一小时前',
@@ -344,6 +428,7 @@
 					this.$toast(JSON.stringify(err));
 				})
 			}
+			
 		}
 	}
 </script>

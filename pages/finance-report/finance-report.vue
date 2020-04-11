@@ -1,7 +1,7 @@
 <template>
 	<view class="finnance">
 		<view class="l-view">
-			<view class="person">
+			<view class="person" @tap="$nav({url:'/pages/personal-card/personal-card'})">
 				<view class="person-t l-flex l-flex-jc_sb">
 					<view class="person-l">
 						<view class="name">
@@ -20,13 +20,13 @@
 							</view>
 						</view>
 						<view class="persontag">
-							<image src="../../static/finance/gg@3x.png" mode=""></image>
+							<image src="../../static/finance/ad.png" mode=""></image>
 							<view class="">
 								建立个人品牌
 							</view>
 						</view>
 					</view>
-					<view class="person-r">
+					<view class="person-r" @tap.stop="uploadPic">
 						<image src="../../static/finance/tx@3x.png" mode="" class="photo"></image>
 						<view class="camera">
 							<image src="../../static/finance/xj@3x.png" mode=""></image>
@@ -119,9 +119,30 @@
 				uni.setClipboardData({
 				    data: 'hello',
 				    success: ()=>{
-				        this.$toast('success');
+				        this.$toast('复制成功');
 				    }
 				});
+			},
+			uploadPic(){
+				uni.chooseImage({
+					count:1,
+					success: (res) => {
+						console.log(res);
+						let url = '/user/center/img/upload';
+						this.$upload(url,res.tempFilePaths[0],{
+							formData:{type:0}
+						}).then(data=>{
+							console.log(data);
+						}).catch(err=>{
+							this.$toast(err);
+						})
+						/* uni.previewImage({
+							urls:res.tempFilePaths,
+							success: ()=>{
+							}
+						}) */
+					}
+				})
 			}
 		}
 	}
@@ -137,7 +158,7 @@
 .person{
 	height: 200px;
 	background-color: #FFFFFF;
-	border-radius: 30rpx;
+	border-radius: 16rpx;
 	margin-top: 30rpx;
 	overflow: hidden;
 	padding: 0 42rpx;
@@ -207,8 +228,8 @@
 	.finance-mm{
 		background-color: #FFFFFF;
 		padding: 0 40rpx;
-		border-top-left-radius: 30rpx;
-		border-top-right-radius: 30rpx;
+		border-top-left-radius: 16rpx;
+		border-top-right-radius: 16rpx;
 		.title{
 			font-size: 18px;
 			font-weight: bold;
@@ -224,8 +245,8 @@
 	.finance-b{
 		position: relative;
 		height: 100rpx;
-		border-bottom-left-radius: 30rpx;
-		border-bottom-right-radius: 30rpx;
+		border-bottom-left-radius: 16rpx;
+		border-bottom-right-radius: 16rpx;
 		background-color: #FFFFFF;
 		justify-content: flex-end;
 		padding: 0 40rpx;
@@ -243,9 +264,9 @@
 			padding: 24rpx;
 			border-radius: 96rpx;
 			background-color: #000000;
-			position: absolute;
-			right: 0;
-			bottom: -64rpx;
+			position: fixed;
+			right: 12px;
+			bottom: 76px;
 			image{
 				width: 48rpx;
 				height: 48rpx; 
@@ -254,7 +275,7 @@
 	}
 }
 .toutiao{
-	border-bottom-left-radius: 30rpx;
-	border-bottom-right-radius: 30rpx;
+	border-bottom-left-radius: 16rpx;
+	border-bottom-right-radius: 16rpx;
 }
 </style>

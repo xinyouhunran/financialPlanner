@@ -31,7 +31,7 @@ page{
 	color: #FFFFFF;
 	text-align: center;
 	line-height: 30rpx;
-	background-color: #fd4857;
+	background-color: #E70012;
 	position: absolute;
 	right: -28rpx;
 	top: -20rpx;
@@ -111,16 +111,20 @@ page{
 	top: 306rpx;
 	left: 50%;
 	margin-left: -351rpx;
+	border-radius: 8rpx;
 }
 .swiper-item{
 	height: 100%;
+	border-radius: 8rpx;
 }
 .l-swiper image{
 	width: 100%;
 	height: 100%;
+	border-radius: 8rpx;
 }
 .swiper-box{
 	height: 100%;
+	border-radius: 8rpx;
 }
 
 .l-title-zhanwei{
@@ -215,7 +219,7 @@ page{
 }
 
 .l-view-mt{
-	margin-top: 126rpx;
+	margin-top: 98rpx;
 }
 .ptb{
 	padding-top: 48rpx;
@@ -244,9 +248,54 @@ page{
 	color: #242424;
 	font-size: 30rpx;
 }
+
+.sentiment-all{
+	background-color: #FFFFFF;
+	padding-top: 15px;
+}
+.sentiment{
+	background-color: #FFFFFF;
+	padding: 40rpx 24rpx 0;
+}
+.sentiment-item{
+	padding-bottom: 30rpx;
+}
+.sentiment-item:nth-of-type(n+2){
+	margin-top: 30rpx;
+}
+.sentiment-l{
+	width: 166rpx;
+	height: 132rpx;
+}
+.sentiment-m{
+	text-align: center;
+}
+.sentiment-r{
+	text-align: right;		
+}
+.sentiment-r view{
+	width: 153rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: pre;
+}
+.sentiment-r view:first-of-type{
+	font-size: 18px;
+	margin-bottom: 21rpx;
+}
+.sentiment-m view:first-of-type{
+	font-size: 18px;
+	margin-bottom: 21rpx;
+	color: #E70012;
+}
+.sentiment-m view:last-of-type,.sentiment-r view:last-of-type{
+	font-size: 13px;
+	color: #828282;
+}
 .product_all{
 	background-color: #FFFFFF;
 	padding-top: 30rpx;
+	margin-top: 20rpx;
 }
 .product_all_t{
 	height: 36rpx;
@@ -294,15 +343,17 @@ page{
 	text-align: center;
 	font-size: 28rpx;
 	margin: 0 10rpx;
+	border-radius: 4rpx;
 }
 .product_all_list .r{
 	border: 1px solid #e70012;
 	color: #e70012;
-	font-size: 20rpx;
+	font-size: 10px;
 	border-radius: 8rpx;
 	text-align: center;
 	line-height: 30rpx;
 	height: 30rpx;
+	padding: 0 3px;
 }
 .product_all_list .middle{
 	font-size: 18px;
@@ -318,7 +369,7 @@ page{
 	width: 200rpx;
 }
 .product_all_list .middle text:nth-of-type(2){
-	margin-left: 70rpx;
+	margin-left: 44rpx;
 }
 .product_all_list .middle text:nth-of-type(3){
 	display: flex;

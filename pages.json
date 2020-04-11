@@ -47,8 +47,9 @@
         ,{
             "path" : "pages/personal-card/personal-card",
             "style" : {
-				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "个人名片"
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "个人名片",
+				"navigationBarBackgroundColor":"#292B66"
 			}
         }
         ,{
@@ -146,6 +147,74 @@
 				"navigationBarBackgroundColor": "#EDEDED"
 			}
         }
+        ,{
+            "path" : "pages/notification/system-infor",
+            "style" : {
+            	"navigationBarTextStyle": "black",
+            	"navigationBarTitleText": "系统通知",
+            	"navigationBarBackgroundColor": "#EDEDED"
+            }
+        }
+        ,{
+            "path" : "pages/result/result",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/cash-baby/cash-baby",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/cash-baby/deposit",
+            "style" : {
+            	"navigationBarTextStyle": "black",
+            	"navigationBarTitleText": "立即存入",
+            	"navigationBarBackgroundColor": "#EDEDED"
+            }
+        }
+        ,{
+            "path" : "pages/personal-card/person-canvas",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personal-card/person-textarea",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personal-card/person-upload",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personal-card/person-edit",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/personal-card/person-share",
+            "style" : {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "详情",
+				"navigationBarBackgroundColor":"#292B66"
+			}
+        }
+        ,{
+            "path" : "pages/product/product-select",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "选择产品",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -178,7 +247,7 @@
 			},
 			{
 				"pagePath":"pages/product/product",
-				"text":"展业",
+				"text":"工具",
 				"iconPath":"static/zy2@3x.png",
 				"selectedIconPath":"static/zy1@3x.png"
 			},

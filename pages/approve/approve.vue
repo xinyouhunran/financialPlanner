@@ -170,27 +170,27 @@
 					issue: '3：您一般的投资年限是多久？',
 					keys: 'investmentPeriod',
 					isA: {
-						option: '1 年以内 ',
+						option: '1年以内',
 						isSelect: false,
 						select: 'A'
 					},
 					isB: {
-						option: '1 年到 3 年  ',
+						option: '1年到3年',
 						isSelect: false,
 						select: 'B'
 					},
 					isC: {
-						option: '3 年到5 年  ',
+						option: '3年到5年',
 						isSelect: false,
 						select: 'C'
 					},
 					isD: {
-						option: '5年到10年  ',
+						option: '5年到10年',
 						isSelect: false,
 						select: 'D'
 					},
 					isE: {
-						option: '10年以上  ',
+						option: '10年以上',
 						isSelect: false,
 						select: 'E'
 					},

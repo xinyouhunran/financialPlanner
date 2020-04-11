@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		<canvas-area></canvas-area>
 	</view>
 </template>
 
@@ -16,10 +16,10 @@
 		},
 		onLoad() {
 			this.$store.state.user.name = '456';
-			uni.setTabBarBadge({
+			/* uni.setTabBarBadge({
 				index:1,
 				text:this.$store.state.user.name
-			})
+			}) */
 		}
 	}
 </script>

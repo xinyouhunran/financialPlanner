@@ -1,15 +1,73 @@
 <template>
 	<view class="notice">
 		<top-notice :texts='noticeStr'></top-notice>
-		<view class="publicmes" @tap="$nav({url:'/pages/road/road-details'})">
+		<view class="publicmes">
 			<view class="noticemsg l-flex">
+				<view class="noticeimg">
+					<image src="../../static/gx@2x.png" mode=""></image>
+				</view>
+				<view class="l-flex l-flex-direction l-flex-jc_sb l-flex-1" @tap="$nav({url:'/pages/road/road-details'})">
+					<view class="l-flex l-flex-jc_sb">
+						<view class="name">
+							净值更新
+						</view>
+						<view class="time">
+							<template v-if="beforetwelve">
+								<view>12小时以前</view>
+							</template>
+							<template v-else>
+								<view>03-24&nbsp;&nbsp;12:00</view>
+							</template>
+						</view>
+					</view>
+					<view class="l-flex l-flex-jc_sb">
+						<view class="news">
+							<view>尊敬的投资者，您订阅的产品净值有更新</view>
+						</view>
+						<view class="ubt" v-if="newsnum>0">
+							{{newsnum}}
+						</view>
+					</view>
+				</view>
+			</view>
+			
+			<view class="noticemsg l-flex" @tap="$nav({url:'/pages/information/information'})">
+				<view class="noticeimg">
+					<image src="../../static/zx@2x.png" mode=""></image>
+				</view>
+				<view class="l-flex l-flex-direction l-flex-jc_sb l-flex-1">
+					<view class="l-flex l-flex-jc_sb">
+						<view class="name">
+							路演资讯
+						</view>
+						<view class="time">
+							<template v-if="beforetwelve">
+								<view>12小时以前</view>
+							</template>
+							<template v-else>
+								<view>03-24&nbsp;&nbsp;12:00</view>
+							</template>
+						</view>
+					</view>
+					<view class="l-flex l-flex-jc_sb">
+						<view class="news">
+							<view>尊敬的投资者，您订阅的产品净值有更新</view>
+						</view>
+						<view class="ubt" v-if="newsnum>0">
+							{{newsnum}}
+						</view>
+					</view>
+				</view>
+			</view>
+			
+			<view class="noticemsg l-flex" @tap="$nav({url:'/pages/notification/system-infor'})">
 				<view class="noticeimg">
 					<image src="../../static/gx@2x.png" mode=""></image>
 				</view>
 				<view class="l-flex l-flex-direction l-flex-jc_sb l-flex-1">
 					<view class="l-flex l-flex-jc_sb">
 						<view class="name">
-							净值更新
+							系统通知
 						</view>
 						<view class="time">
 							<template v-if="beforetwelve">
@@ -118,11 +176,10 @@
 	margin-right: 25rpx;
 }
 .ubt{
-	min-width: 16px;
+	padding: 1px 4px;
 	border-radius: 16px;
 	color: #FFFFFF;
 	text-align: center;
-	line-height: 16px;
 	background-color: #fd4857;
 	font-size: 11px;
 }

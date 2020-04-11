@@ -2,16 +2,28 @@
 	<view class="l-share">
 		<view class="l-share-view l-share-view-1">
 			<!-- #ifdef APP-PLUS -->
-			<view class="l-share-item" >
+			<view class="l-share-item" @tap="uniShare('weixin', 'WXSceneSession')">
 				<span class="l-icon l-icon-share l-icon-wx"></span>
 				<view class="l-share-type">
 					微信好友
 				</view>
 			</view>
-			<view class="l-share-item"  >
+			<view class="l-share-item"  @tap="uniShare('weixin', 'WXSenceTimeline')">
 				<span class="l-icon l-icon-share l-icon-pyq"></span>
 				<view class="l-share-type">
 					朋友圈
+				</view>
+			</view>
+			<view class="l-share-item" @tap="uniShare('qq')">
+				<span class="l-icon l-icon-share l-icon-qq"></span>
+				<view class="l-share-type">
+					QQ好友
+				</view>
+			</view>
+			<view class="l-share-item" @tap="uniShare('sinaweibo')">
+				<span class="l-icon l-icon-share l-icon-wb"></span>
+				<view class="l-share-type">
+					新浪微博
 				</view>
 			</view>
 			<!-- #endif -->
@@ -22,7 +34,6 @@
 					QQ空间
 				</view>
 			</view>
-			<!-- #endif -->
 			<view class="l-share-item" @tap="open_share('qq')">
 				<span class="l-icon l-icon-share l-icon-qq"></span>
 				<view class="l-share-type">
@@ -35,6 +46,8 @@
 					新浪微博
 				</view>
 			</view>
+			<!-- #endif -->
+			
 		</view>
 		<view class="l-share-view l-share-view-2" @tap="$emit('close')">
 			取消
@@ -50,15 +63,15 @@
 				default(){
 					return {}
 				}
-			}
+			},
+			
 		},
 		data() {
 			return {}
 		},
 		methods: {
-			// #ifdef H5
 			open_share(type) {
-				var shareUrl = 'www.baidu.com';
+				var shareUrl = encodeURIComponent(location.href);
 				var shareTitle = this.dataInfo.title || '';
 				var shareImg = this.dataInfo.coverImageUrl || '';
 				var shareDesc = '';
@@ -78,8 +91,37 @@
 						break;
 				}
 				window.open(openUrl);
-			}
-			// #endif
+			},
+			uniShare(provider,scene){
+				let title = this.dataInfo.title || '';
+				let imageUrl = this.dataInfo.coverImageUrl || '';
+				let page = this.$pageList(1);
+				let href = this.dataInfo.href ? this.dataInfo.href : this.$config.$h5Url + page.route + '?id=' + page.id;
+				let mediaUrl = this.dataInfo.videoUrl || '';
+				let summary = this.dataInfo.presenterIntroduce || '';
+				let type = provider == 'qq' ? 1 : 0;
+				let option = {
+				    provider,
+				    type,
+					href,
+				    title,
+				    summary,
+				    imageUrl,
+				    success: function (res) {
+				        console.log("success:" + JSON.stringify(res));
+				    },
+				    fail: function (err) {
+				        console.log("fail:" + JSON.stringify(err));
+				    }
+				}
+				
+				
+				if(scene){
+					option.scene = scene
+				}
+				
+				uni.share(option)
+			},
 		}
 	}
 </script>
