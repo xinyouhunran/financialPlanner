@@ -56,7 +56,7 @@
 	&-text{
 		margin: 32rpx 20rpx 0;
 		background-color: #F7F7F7;
-		height: 280rpx;
+		height: 306rpx;
 		image{
 			width: 66rpx;
 			height: 66rpx;
@@ -69,6 +69,9 @@
 		.addTip{
 			color: #afafaf;
 			margin-top: 32rpx;
+			width: 502rpx;
+			text-align: center;
+			line-height: 32rpx;
 		}
 	}
 }

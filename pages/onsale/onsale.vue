@@ -1,15 +1,32 @@
 <template>
 	<view>
-		<view class="l-view sale-t l-flex l-flex-jc_c">
+		<!-- <view class="l-view sale-t l-flex l-flex-jc_c">
 			<view class="sale-search l-flex">
 				<span class="l-icon l-icon-search"></span>
 				<view class="af">
 					请输入产品
 				</view>
 			</view>
+		</view> -->
+		<view class="l-status"></view>
+		<view class="public-private l-flex l-flex-ai_c l-flex-jc_sb l-view">
+			<view class="l" @tap="$back(1)">
+				<image src="../../static/back@2x.png" mode=""></image>
+			</view>
+			<view class="m l-flex">
+				<view :class="{'m-active':productTag==0}" @tap="changeProduct(0)">
+					公募
+				</view>
+				<view :class="{'m-active':productTag==1}" @tap="changeProduct(1)">
+					私募
+				</view>
+			</view>
+			<view class="r">
+				<image src="../../static/ss@2x.png" mode=""></image>
+			</view>
 		</view>
 		
-		<view class="screen l-flex l-flex-jc_sa l-flex-ai_c">
+		<!-- <view class="screen l-flex l-flex-jc_sa l-flex-ai_c">
 			<view class="screen-item">
 				<view class="l-flex l-flex-ai_c">
 					<view class="" @tap="tab=1">
@@ -32,127 +49,31 @@
 					
 				</view>
 			</view>
-		</view>
+		</view> -->
 		
-		<view class="product_all_list">
-			<view v-for="(item,index) in productFeature" :key='index'>
-				<view class="l-flex top l-flex-jc_sb" :class="{topmt:index!=0}">
-					<view class="l-flex">
-						<view class="l">
-							{{item.name}}
-						</view>
-						<view class="m" v-if="item.tag1">
-							{{item.tag1}}
-						</view>
-						<view class="r" v-if="item.tag2">
-							{{item.tag2}}
-						</view>
-					</view>
-					<view class="time">
-						{{item.time}}
-					</view>
-				</view>
-				<view class="l-flex middle">
-					<text>{{item.netchange}}</text>
-					<text class="danwei">{{item.latestnet}}</text>
-					<text :class="{'red':item.earnings>0,'green':item.earnings<0}">{{item.earnings}}%</text>
-				</view>
-				<view class="l-flex l-flex-jc_sb bottom l-bb">
-					<text>净值日期</text>
-					<text>单位净值</text>
-					<text>净值变动</text>
-				</view>
-			</view>
-		</view>
-		
-		<view class="onsale-mask">
-			
-		</view>
+		<private-sale></private-sale>
+
 	</view>
 </template>
 
 <script>
+	import privateSale from "./private-sale";
 	export default {
+		components:{
+			privateSale
+		},
 		data() {
 			return {
+				productTag:1,
+				
 				tab:1,
-				productFeature:[{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'+6.88',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'-6.88',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'0.00',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'+6.88',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'-6.88',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'0.00',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'+6.88',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'-6.88',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'0.00',
-				latestnet:'1.4530',
-				netchange:'2020-03-20',
-				time:'03-24 12:00'
-				}],
+				
 			}
 		},
 		methods: {
-			
+			changeProduct(tag){
+				this.productTag = tag;
+			},
 		}
 	}
 </script>
@@ -211,81 +132,33 @@
 		margin-left: -6rpx;
 	}
 }
-.product_all_list{
-	padding: 40rpx 24rpx 0;
+
+.public-private{
+	z-index: 1;
+	height: 88rpx;
+	position: fixed;
+	width: calc(100% - 48rpx);
+	padding-top: var(--status-bar-height);
+	top: 0;
+	height: 88rpx;
 	background-color: #FFFFFF;
-	margin-top: calc(190rpx + var(--status-bar-height));
-}
-.product_all_list .top{
-	margin-bottom: 50rpx;
-}
-.product_all_list .time{
-	font-size: 12px;
-	color: #828282;
-	align-self: flex-end;
-}
-.topmt{
-	margin-top: 40rpx;
-}
-.product_all_list .top .l{
-	font-size: 16px;
-}
-.product_all_list .m{
-	width: 88rpx;
-	height: 34rpx;
-	background-color:#D3A35C ;
-	color: #FFFFFF;
-	line-height: 34rpx;
-	text-align: center;
-	font-size: 28rpx;
-	margin: 0 10rpx;
-	border-radius: 4rpx;
-}
-.product_all_list .r{
-	border: 1px solid #e70012;
-	color: #e70012;
-	font-size: 20rpx;
-	border-radius: 8rpx;
-	text-align: center;
-	line-height: 30rpx;
-	height: 30rpx;
-	padding: 0 3px;
-}
-.product_all_list .middle{
-	font-size: 18px;
-	margin-bottom: 24rpx;
-}
-.product_all_list .middle .red{
-	color: #e70012;
-}
-.product_all_list .middle .green{
-	color: green;
-}
-.product_all_list .middle text:nth-of-type(1){
-	width: 280rpx;
-}
-.product_all_list .middle text:nth-of-type(3){
-	display: flex;
-	flex: 1;
-	justify-content: flex-end;
-}
-.product_all_list .middle .danwei{
-	margin-left: 16rpx;
-}
-.product_all_list .bottom{
-	font-size: 13px;
-	color: #828282;
-	padding-bottom: 40rpx;
-}
-/* .product_all_list .bottom text:nth-of-type(3){
-	display: flex;
-	flex: 1;
-	justify-content: flex-end;
-}
-.product_all_list .bottom text:nth-of-type(2){
-	margin-left: 200rpx;
-} */
-.l-bb{
-	border-bottom: 2rpx solid #F4F4F4;
+	.l{
+		width: 10px;
+		height: 17px;
+	}
+	.m{
+		font-size: 17px;
+		color: #828282;
+		view:nth-of-type(1){
+			margin-right: 48rpx;
+		}
+	}
+	.m-active{
+		color: #242424;
+	}
+	.r{
+		width: 34rpx;
+		height: 34rpx;
+	}
 }
 </style>

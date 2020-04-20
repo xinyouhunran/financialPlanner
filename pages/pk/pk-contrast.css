@@ -1,0 +1,102 @@
+.l-container {
+	width: 100%;
+	padding-bottom: 50rpx;
+}
+
+.l-swiper {
+	width: 100%;
+}
+
+.l-swiper-item {
+	width: 100%;
+}
+
+.l-scroll {
+	width: 100%;
+	white-space: nowrap;
+}
+
+.l-scroll-view{
+	display: flex;
+}
+
+.l-sv-item{
+	display: inline-block;
+	width: 100rpx;
+	height: 200rpx;
+	background-color: #0A98D5;
+	margin: 0 20rpx;
+}
+
+.l-icon-transfrom{
+	width: 20rpx;
+	height: 20rpx;
+	margin-left: 4rpx;
+	background-image: url('~@/static/transfrom.png');
+}
+
+.l-tab{
+	display: flex;
+	width: 100%;
+	height: 110rpx;
+	align-items: center;
+}
+
+.l-tab-item{
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.l-tab-active{
+	color: #89622F;
+}
+
+.l-list{
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.l-list-item{
+	min-width: 33%;
+	display: flex;
+	box-sizing: border-box;
+	padding-left: 30rpx;
+	margin-bottom: 26rpx;
+	align-items: center;
+}
+
+.l-icon-bg{
+	width: 12rpx;
+	height: 10rpx;
+	margin-right: 10rpx;
+	background-color: #007AFF;
+}
+
+.l-label{
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 0 30rpx;
+	justify-content: space-between;
+	height: 60rpx;
+	
+}
+
+.l-label-item{
+	align-self: flex-end;
+}
+
+.l-color-E70012{
+	color: #E70012;
+}
+
+.l-bottom{
+	padding: 30rpx;
+	font-size: 24rpx;
+	color: #828282;
+}
+

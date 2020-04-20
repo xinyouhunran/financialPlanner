@@ -215,6 +215,247 @@
 				"navigationBarBackgroundColor": "#EDEDED"
 			}
         }
+        ,{
+            "path" : "pages/product-rank/product-rank",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/theme-fund/theme-fund",
+            "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "主题基金",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+        }
+        ,{
+            "path" : "pages/theme-fund/theme-detail",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/private-school/private-school",
+            "style" : {
+				"navigationBarTitleText": "私募学堂",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+        },{
+            "path" : "pages/earnings/earnings",
+            "style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        },{
+			"path": "pages/tally/tally",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/tally/tally-search",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/tally/tally-detail",
+			"style": {
+				"navigationBarTitleText": "记账详情"
+			}
+		},
+		{
+			"path": "pages/my-choice/my-choice",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/my-choice/product-choice",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/mine/update-tradpwd",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "修改交易密码",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "验证手机",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/register/register-invite",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "设置密码",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/register/pass-login",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "密码登录",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/register/vertify-login",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "验证码登录",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/open-account/open-account",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "基金交易开户",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/open-account/bind-bank",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "绑定银行卡",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/open-account/set-tradpwd",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "设置交易密码",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/product-details/product-details",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "产品详情",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/download/download",
+			"style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "app下载",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		},
+		{
+			"path": "pages/pk/pk",
+			"style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/pk/pk-add",
+			"style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/pk/pk-contrast",
+			"style": {
+				"navigationBarTitleText": "产品PK"
+			}
+		},
+		{
+			"path": "pages/road/road",
+			"style" : {
+				"navigationBarTitleText": "路演大厅"
+			}
+		},
+		{
+			"path": "pages/mine/person-main",
+			"style" : {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/deal/mine",
+			"style" : {
+				"navigationBarTitleText": "联系我们"
+			}
+		},
+		{
+			"path": "pages/deal/privacy",
+			"style": {
+				"navigationBarTitleText": "隐私条例"
+			}
+		},
+		{
+			"path": "pages/deal/serve",
+			"style": {
+				"navigationBarTitleText": "服务协议"
+			}
+		},
+		{
+			"path": "pages/tabbar/windzxsh/windxsh-details",
+			"style": {
+				"navigationBarTitleText": "资讯详情"
+			}
+		},
+		{
+			"path": "pages/mine/financial-certification",
+			"style": {
+				"navigationBarTitleText": "金融从业认证"
+			}
+		},
+		{
+			"path": "pages/mine/financial-result",
+			"style": {
+				"navigationBarTitleText": "金融从业认证"
+			}
+		},
+		{
+			"path": "pages/tool/tool",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/tool/customer-manager",
+			"style": {
+				"navigationBarTitleText": "客户管理"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -246,7 +487,7 @@
 				"selectedIconPath":"static/zs1@3x.png"
 			},
 			{
-				"pagePath":"pages/product/product",
+				"pagePath":"pages/tool/tool",
 				"text":"工具",
 				"iconPath":"static/zy2@3x.png",
 				"selectedIconPath":"static/zy1@3x.png"

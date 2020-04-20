@@ -11,13 +11,13 @@
 						搜产品/人脉/资讯
 					</view>
 				</view> -->
-				<input ref="sea" type="text" v-model="searchText" placeholder="搜产品/资讯" placeholder-style="color:#afafaf;" class="rank-input" 
+				<input ref="sea" type="text" v-model="keyword" placeholder="搜产品" placeholder-style="color:#afafaf;" class="rank-input" 
 				@confirm="confirm()" :confirm-hold="true"
 				@blur="blurSearch()"/>
 				<view class="cancel" @tap="$back(1)">
 					取消
 				</view>
-				<view class="clear" v-if="searchText" @tap="clear">
+				<view class="clear" v-if="keyword" @tap="clear">
 					<image src="../../static/clear@2x.png" mode=""></image>
 				</view>
 			</view>
@@ -26,16 +26,25 @@
 		<view class="search-zhanwei"></view>
 		
 		<view class="l-view" v-if="alreadySearch">
-			<template v-if="customerList.length">
-				<view class="l-flex l-flex-ai_c l-flex-jc_sb searchList" v-for="(v,i) in customerList" :key="i">
-					<view v-html="v.name">
+			<template v-if="fundList.length">
+				<view class="l-flex l-flex-ai_c l-flex-jc_sb searchList" v-for="(v,i) in fundList" :key="i" @tap="$nav({url:`/pages/product-details/product-details?id=${v.securityId}`})">
+					<view v-html="v.secFullName" class="l-flex-1">
 					</view>
 					<view class="color82">
 						私募
 					</view>
 				</view>
 			</template>
-			<template v-else>
+			<template v-if="fundListCon.length">
+				<view class="l-flex l-flex-ai_c l-flex-jc_sb searchList" v-for="(v,i) in fundListCon" :key="i" @tap="$nav({url:`/pages/product-details/product-details?id=${v.securityId}`})">
+					<view v-html="v.secFullName" class="l-flex-1">
+					</view>
+					<view class="color82">
+						公募
+					</view>
+				</view>
+			</template>
+			<template v-if="!(fundList.length||fundListCon.length)">
 				<view class="l-flex l-flex-ai_c l-flex-jc_sb searchList">
 					<view class="color82">
 						未搜索到您要的结果
@@ -73,47 +82,40 @@
 		data() {
 			return {
 				alreadySearch:false,
-				searchText:'',
-				customerList:[],
+				keyword:'',
 				online:true,
-				privatefundsList:[{
-					name:'中战龙鳞1号私募证券投资基金',
-					earnings:'42.35%'
-				},{
-					name:'中战龙鳞1号私募证券投资基金',
-					earnings:'42.35%'
-				},{
-					name:'中战龙鳞1号私募证券投资基金',
-					earnings:'42.35%'
-				}],
-				publicfundsList:[{
-					name:'中战龙鳞基金',
-					earnings:'42.35%'
-				}],
-				companyList:[{
-					imgSrc:'../../static/logo.png',
-					name:'深圳市龙鳞资本管理有限公司',
-					setTime:'2014',
-					product:'中战宏观对冲2号'
-				}]
+
+				pageInfo: {
+					'pageInfo.pageIndex': 1,
+					'pageInfo.pageSize': 65535
+				},
+				fundList: [],
+				fundListCon: [],
+				// 私募产品搜索
+				searchFundInfo: 'business/searchFundInfo',
+				// 公募产品搜索
+				searchFundClassInfo: 'business/searchFundClassInfo',
+
+				isLoad: false,
+				isMore: false
 			}
 		},
 		onLoad() {
-			
+			this.isLoad = false;
 		},
 		computed:{
 			
 		},
 		methods: {
 			search(){
-				let reg = new RegExp(`${this.searchText}`,'gi');
+				let reg = new RegExp(`${this.keyword}`,'gi');
 				let res = [{
 					name:'龙鳞儿',
 					birth:'1971-12-30',
 					addTime:'2020-02-20'
 				}];
 				this.customerList.push(...res.map(v => {
-					v.name = v.name.replace(reg,`<text style='color: #E70012;font-weight: bold;'>${this.searchText}</text>`)
+					v.name = v.name.replace(reg,`<text style='color: #E70012;font-weight: bold;'>${this.keyword}</text>`)
 					return v;
 				}))
 				let res1 = [{
@@ -122,7 +124,7 @@
 					addTime:'2020-02-20'
 				}];
 				res1.map(v => {
-					v.name = v.name.replace(reg,`<text style='color: #E70012;font-weight: bold;'>${this.searchText}</text>`)
+					v.name = v.name.replace(reg,`<text style='color: #E70012;font-weight: bold;'>${this.keyword}</text>`)
 					return v;
 				});
 				this.customerList.push(...res1);
@@ -140,14 +142,95 @@
 			},
 			confirm(){
 				uni.hideKeyboard();
-				this.search();
+				this.getKeyword();
 			},
 			blurSearch(){
 
 			},
 			clear(){
-				this.searchText = '';
-			}
+				this.keyword = '';
+				this.alreadySearch = false;
+			},
+			/**
+			* 基金产品搜索
+			*/
+		   getKeyword(){
+		   	this.fundList =  [];
+		   	this.fundListCon = []
+		   	this.searchFun();
+		   },
+		   
+		   async searchFun(){
+		   	uni.showLoading({
+		   		title:'搜索中...'
+		   	});
+		   	if(!this.isLoad){
+		   		this.isLoad = !this.isLoad;
+		   	}
+		   	this.isMore = false;
+		   	let fundList = await this.searchFundInfoFun();
+		   	let fundListCon = await this.searchFundClassInfoFun();
+			uni.hideLoading();
+			this.alreadySearch = true;
+		   },
+		   //私募
+			async searchFundInfoFun(){
+				let reg = new RegExp(`${this.keyword}`,'gi');
+				let url = this.searchFundInfo;
+				let pageInfo = this.pageInfo;
+				let params = {
+					key: this.keyword,
+				};
+				Object.assign(params, pageInfo);
+				
+				return new Promise((resolve,reject)=>{
+					this.$get(url,params)
+					.then(res => {
+						//uni.hideLoading()
+						if(res.code === '200'){
+							let data = res.content || {};
+							this.fundList = data.list.map(v => {
+								v.secFullName = v.secFullName.replace(reg,`<text style='color: #E70012;font-weight: bold;'>${this.keyword}</text>`)
+								return v;
+							});
+							resolve(this.fundList)
+						}
+						setTimeout(() => {
+							this.isMore = true;
+						},500)
+					}).catch(e => {
+						reject('err')
+						uni.hideLoading()
+					})
+				})	
+			},
+			//公募
+			async searchFundClassInfoFun(){
+				let reg = new RegExp(`${this.keyword}`,'gi');
+				let url = this.searchFundClassInfo;
+				let pageInfo = this.pageInfo;
+				let params = {
+					key: this.keyword,
+				};
+				Object.assign(params, pageInfo);
+				return new Promise((resolve,reject)=>{
+					this.$get(url,params)
+					.then(res => {
+						//uni.hideLoading()
+						if(res.code === '200'){
+							let data = res.content || {};
+							this.fundListCon = data.list.map(v => {
+								v.secFullName = v.secFullName.replace(reg,`<text style='color: #E70012;font-weight: bold;'>${this.keyword}</text>`)
+								return v;
+							})
+							resolve(this.fundListCon)
+						}
+					}).catch(e => {
+						reject('err')
+						uni.hideLoading()
+					})
+				})		
+			},
 		}
 	}
 </script>

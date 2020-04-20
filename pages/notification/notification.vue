@@ -1,6 +1,6 @@
 <template>
 	<view class="notice">
-		<top-notice :texts='noticeStr'></top-notice>
+		<top-notice :texts='noticeStr' :show="true"></top-notice>
 		<view class="publicmes">
 			<view class="noticemsg l-flex">
 				<view class="noticeimg">
@@ -91,7 +91,7 @@
 		</view>
 		
 		<view class="privatemes">
-			<view class="noticemsg l-flex">
+			<view class="noticemsg l-flex" @longpress="bindClick(index)" @click.stop="chatDetail(index)">
 				<view class="noticeimg">
 					<image src="../../static/picture.png" mode=""></image>
 				</view>
@@ -124,16 +124,147 @@
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	let _self;
 	export default {
 		data() {
 			return {
 				noticeStr:'最新净值、最新热点资讯、业务进度不容错过！去开启',
 				beforetwelve:false,
-				newsnum:1
+				newsnum:1,
+				
+				isDel: null,
+				lists: [],
+				options2: [{
+					text: '删除',
+					style: {
+						backgroundColor: '#FF3A30'
+					}
+				}],
 			}
 		},
+		computed:{
+			...mapState(['hasLogin', 'loginProvider', 'nickname', 'avatar', 'receiveMessage', 'newFriendInvitiaon']),
+			qualified() {
+				return this.$store.getters.qualified;
+			},
+			conversations(){
+				return this.$store.getters.conversations;
+			}
+		},
+		onLoad(){
+			_self = this;
+		},
+		onShow() {
+			if(this.hasLogin){
+				this.getList();
+			}else{
+				let _this = this;
+				_this.$showModal('您还未登录，是否立即去登录?',{
+					success(){
+						_this.$nav({ url: '/pages/login/login' })
+					},
+					error(){
+						_this.$nav({ url: '/pages/index/index' }, 'switchTab')
+					}
+				})
+			}
+		},
+		onPullDownRefresh() {
+			if(this.hasLogin){
+				this.getList();
+			}
+		},
+		watch: {
+			receiveMessage(res) {
+				console.log("监听到新消息，更新列表");
+				this.getList();
+			},
+			conversations(n){
+				let list = this.setList(n);
+				this.lists = list;
+				this.$store.dispatch('getAllUnreadCount');
+			},
+		},
 		methods: {
+		
+			bindClick(index) {
+				let _this = this;
+				
+				_this.$showModal('删除会话会把历史消息也同时删除，确定删除该会话嘛？', {
+					success(){
+						let item = _this.lists[index]
+						// 删除
+						var params = {
+							"type": "single",
+							"username": item.target.username
+						};
+						_this.isDel = null
+						_this.jpushIM.deleteConversation(params, (res) => {
+							if (res.errorCode == 0) {
+								_this.getList();
+								_this.$toast('删除成功')
+							} else {
+								uni.showModal({
+									title: '删除失败',
+									content: "原因：" + res.errorMsg,
+									showCancel: false,
+									cancelText: '',
+									confirmText: '关闭'
+								});
+							}
+						})
+					}
+				})
+				
 			
+			},
+			// 从本地数据库中获取会话列表，默认按照会话的最后一条消息的时间，降序排列
+			getList() {
+				uni.stopPullDownRefresh();
+				_self.$store.dispatch('getConversations')
+			},
+			setList: function(items) {
+				var newItems = [];
+				items.forEach((e) => {
+					if (e) {
+						if (e.latestMessage) {
+							if (e.latestMessage.messageType == "image") {
+								e.lastMessageText = "[图片]";
+							} else if (e.latestMessage.messageType == "voice") {
+								e.lastMessageText = "[语音]";
+							} else {
+								e.lastMessageText = e.latestMessage.messageString;
+							}
+							e.lastMessageTime = this.imUtils.formatDateTime((e.latestMessage.createTime), "str");
+						} else {
+							e.lastMessageText = "";
+							e.lastMessageTime = "";
+						}
+						if(e.conversationType == "single"){
+							// 单聊会话
+							e.avatar = e.target.avatar ? e.target.avatar : "../../static/img/im/chat_icon.png";
+						}else if(e.conversationType == "group"){
+							// 群聊会话
+							e.avatar = "../../static/img/im/chat_icon_group.jpg"
+						}
+						newItems.push(e);
+					}
+				});
+				return newItems;
+			},
+			chatDetail(index) {
+				let item = this.lists[index];
+				
+				let title = item.target.nickname ? item.target.nickname : item.target.username;
+				uni.navigateTo({
+					url: '/pages/im-chat/im-chat?title=' + title + '&fromUser=' + item.target.username
+				});
+				
+			}
 		}
 	}
 </script>

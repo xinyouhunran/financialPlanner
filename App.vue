@@ -1,10 +1,12 @@
 <script>
+	import store from './store';
 	export default {
 		onLaunch: function() {
-			console.log('App Launch');
-			this.$store.dispatch('setUser',{name:'123'}).then(data=>{
-				//console.log(this.$store.state.user);
-			})
+			
+			if(this.$getStorage('token')){
+				store.dispatch('getUserFn');
+			}
+			
 		},
 		onShow: function() {
 			console.log('App Show');

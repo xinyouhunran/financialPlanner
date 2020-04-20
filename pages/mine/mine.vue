@@ -1,164 +1,146 @@
 <template>
-	<view>
-		<view class="l-titleNView-fixed">
+	<view class="container">
+		<view class="mine">
 			<view class="l-status"></view>
-			<view class="l-titleNView-content l-flex l-flex-ai_c">
-				<view class="l-titleNView-nav l-flex l-flex-ai_c" >
-					<view class="l-title-icon1">
-						
-					</view>
-					<view class="l-title-t">
-						用户中心
-					</view>
-					<view class="l-title-icon2" @tap="$nav({url:'/pages/mine/setting'})">
-						
-					</view>
-					<view class="l-title-icon3" @tap="$nav({url:'/pages/index/index'},'switchTab')">
-						首页
-					</view>
-				</view>
-			</view>
-		</view>
-		
-		<view class="mine-head">
-			<view class="l-status"></view>
-			<view class="l-title-zhanwei"></view>
-			<view class="l-flex">
-				<image src="../../static/logo.png" mode="aspectFill" @tap="getImage"></image>
-				<view class="l-flex l-flex-direction">
+	
+			<span class="l-icon l-icon-message" @tap="$nav({url:'/pages/notification/notification'})">
+				<view class="ubt">7</view>
+			</span>
+			<view class="l-flex mine-head l-flex-ai_c">
+				<image src="../../static/finance/tx@3x.png" mode="aspectFill" @tap="getImage"></image>
+				<view class="l-flex l-flex-direction l-flex-1" v-if="hasLogin">
 					<view class="l-flex">
 						<view class="l-p">
-							木村咧
+							李丽华
 						</view>
 						<view class="l-span">
-							认证
+							邀请码:23ue6
 						</view>
 					</view>
-					<view class="l-phone">
-						7528957892
-					</view>
+					<view class="l-flex l-flex-jc_sb l-phone">
+						<view class="">
+							诺亚财富
+						</view>
+						<view class="l-flex l-flex-ai_c" @tap="$nav({url:'/pages/mine/person-main'})">
+							<view>
+								个人主页
+							</view>
+							<view>
+								<image src="../../static/mine/rightwhite.png" mode=""></image>
+							</view>
+						</view>
+					</view>				
+				</view>
+				
+				<view class="gologin" v-else @tap="$nav({url:'/pages/register/pass-login'})">
+					登录/注册
 				</view>
 			</view>
 		</view>
 		
-		<view class="mine-tab mbb">
-			<view class="uni-flex l-flex-jc_sa mine-tab-t mbb">
-				<view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
-					<text>个人名片</text>
-				</view>
-				<view>
-					<image src="../../static/logo.png" mode=""></image>
-					<text>个人名片</text>
-				</view>
-				<view>
-					<image src="../../static/logo.png" mode=""></image>
-					<text>个人名片</text>
-				</view>
-				<view>
-					<image src="../../static/logo.png" mode=""></image>
-					<text>132</text>
-				</view>
-			</view>
-			<view class="l-flex l-flex-jc_sb account l-flex-ai_c">
-				<view class="">
-					账户总览(万)
-				</view>
-				<view class="l-flex l-flex-ai_c">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
-					<view class="account-cash">
-						100.00
-					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
-				</view>
-			</view>
-			<view class="l-flex mine-private l-flex-jc_sa">
-				<view class="private-img">
-					
-				</view>
-				<view class="l-flex l-flex-direction l-flex-jc_sa">
-					<view class="">
-						私人客户经理
-					</view>
-					<view class="">
-						为您提供1V1专业理财顾问服务
-					</view>
-				</view>
-				<view class="l-flex l-flex-as_c">
-					<template>
-						<view v-if="true">1</view>
-						<view v-else>2</view>
-					</template>
-					<view class="">
-						在线
-					</view>
-				</view>
-			</view>
-		</view>
-		
-		<view class="four-line mbt">
-			<view class="line-operation mbb">
+		<view class="one-line">
+			<view class="line-operation">
 				<view class="l-flex l-flex-ai_c left">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/mine/zc@2x.png" mode="aspectFill"></image>
 					<view class="">
-						风险测评
+						资产总览 
+					</view>
+				</view>
+				<view class="l-flex l-flex-ai_c right">
+					<view class="">
+						{{hasLogin?'0.16':'--'}}
+					</view>
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
+				</view>
+			</view>
+		</view>
+		
+		<view class="four-line">
+			<view class="line-operation l-bb">
+				<view class="l-flex l-flex-ai_c left">
+					<image src="../../static/mine/gz@2x.png" mode="aspectFill"></image>
+					<view class="">
+						我的关注
 					</view>
 				</view>
 				<view class="l-flex l-flex-ai_c right">
 					<view class="">
 						
 					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
-			<view class="line-operation mbb">
+			<view class="line-operation">
 				<view class="l-flex l-flex-ai_c left">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/mine/ht@2x.png" mode="aspectFill"></image>
 					<view class="">
-						实名信息
+						电子合同
+					</view>
+				</view>
+				<view class="l-flex l-flex-ai_c right">
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
+				</view>
+			</view>
+		</view>
+		
+		<view class="three-line">
+			<view class="l-bb title">
+				金融从业者
+			</view>
+			<view class="line-operation">
+				<view class="l-flex l-flex-ai_c left">
+					<image src="../../static/mine/r@2x.png" mode="aspectFill"></image>
+					<view class="">
+						金融从业者
+					</view>
+				</view>
+				<view class="l-flex l-flex-ai_c right" @tap="$nav({url:'/pages/mine/financial-certification'})">
+					<view class="">
+						{{hasLogin?qualified?'':'未认证':'未认证'}}
+					</view>
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
+				</view>
+			</view>
+		</view>
+		<view class="three-line">
+			<view class="l-bb title">
+				合格投资者
+			</view>
+			<view class="line-operation l-bb">
+				<view class="l-flex l-flex-ai_c left">
+					<image src="../../static/mine/dd@2x.png" mode="aspectFill"></image>
+					<view class="">
+						合格投资者承诺
 					</view>
 				</view>
 				<view class="l-flex l-flex-ai_c right">
 					<view class="">
-						未认证
+						{{hasLogin?qualified?'':'未认证':'未认证'}}
 					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
-			<view class="line-operation mbb">
+			<view class="line-operation">
 				<view class="l-flex l-flex-ai_c left">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/mine/lc@2x.png" mode="aspectFill"></image>
 					<view class="">
-						合格投资者
-					</view>
-				</view>
-				<view class="l-flex l-flex-ai_c right">
-					<view class="">
-						未认证
-					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
-				</view>
-			</view>
-			<view class="line-operation mbb">
-				<view class="l-flex l-flex-ai_c left">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
-					<view class="">
-						会员特权
+						理财标签
 					</view>
 				</view>
 				<view class="l-flex l-flex-ai_c right">
 					<view class="">
 						
 					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
 		</view>
 		
-		<view class="three-line mbt">
-			<view class="line-operation mbb">
+		
+		<view class="three-line">
+			<view class="line-operation l-bb">
 				<view class="l-flex l-flex-ai_c left">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/mine/fk@2x.png" mode="aspectFill"></image>
 					<view class="">
 						意见反馈
 					</view>
@@ -167,51 +149,53 @@
 					<view class="">
 						
 					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
-			<view class="line-operation mbb">
+			<view class="line-operation" @tap="$nav({url:'/pages/mine/setting'})" id="set">
 				<view class="l-flex l-flex-ai_c left">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/mine/sz@2x.png" mode="aspectFill"></image>
 					<view class="">
-						常见问题
+						设置
 					</view>
 				</view>
 				<view class="l-flex l-flex-ai_c right">
 					<view class="">
 						
 					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
-				</view>
-			</view>
-			<view class="line-operation mbb">
-				<view class="l-flex l-flex-ai_c left">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
-					<view class="">
-						关于融总管
-					</view>
-				</view>
-				<view class="l-flex l-flex-ai_c right">
-					<view class="">
-						
-					</view>
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
 		</view>
 		
-		<view class="l-flex customer-service l-flex-jc_c">
+		<!-- <view class="l-flex customer-service l-flex-jc_c">
 			融融客服热线：&nbsp;&nbsp;400-xxx-xxxx
-		</view>
+		</view> -->
 	</view>
 </template>
 
 <script>
+	import {mapState} from 'vuex';
 	export default {
 		data() {
 			return {
-				online:true,
+				
 			}
+		},
+		computed:{
+			...mapState({
+				hasLogin:'hasLogin',
+				qualified:'qualified'
+			})
+			/* isLogin(){
+				return this.$store.state.hasLogin
+			},
+			isqualified(){
+				return this.$store.state.qualified
+			} */
+		},
+		mounted() {
+			
 		},
 		methods: {
 			getImage(){
@@ -233,99 +217,94 @@
 </script>
 
 <style scoped lang="scss">
-.l-titleNView {
-	width: 100%;
+.container{
+	background-color: #F4F4F4;
+	min-height: 100vh;
 }
-
-.l-titleNView-fixed{
-	position: fixed;
-	z-index: 800;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-color: #2B2A2A;
+.mine{
+	height: 380rpx;
+	background: url(../../static/mine/mineback.png) no-repeat;
+	background-size: cover;
+	padding: 0 24rpx;
 }
-.l-titleNView-nav{
+.l-icon-message{
+	width: 40rpx;
+	height: 36rpx;
+	background-image: url('~@/static/xx@2x.png');
+	margin-top: 44rpx;
+	margin-left: 632rpx;
+	display: inline-block;
 	position: relative;
 }
-.l-titleNView-content {
-	height: 116rpx;	
-}
-.l-title-icon1{
-	width: 48rpx;
-	height: 48rpx;
-	border: 1px solid #FFFFFF;
-	margin-left: 32rpx;
-}
-.l-title-icon2{
-	width: 48rpx;
-	height: 48rpx;
-	border: 1px solid #FFFFFF;
-	margin-left: 490rpx;
-}
-.l-title-icon3{
-	width: 56rpx;
-	height: 56rpx;
-	border: 1px solid #FFFFFF;
-	border-radius: 56rpx;
-	margin-left: 36rpx;
+.ubt{
+	min-width: 30rpx;
+	min-height: 30rpx;
+	border-radius: 30rpx;
 	color: #FFFFFF;
-	line-height: 56rpx;
-	font-size: 20rpx;
 	text-align: center;
+	line-height: 30rpx;
+	background-color: #E70012;
+	position: absolute;
+	right: -28rpx;
+	top: -20rpx;
+	font-size: 22rpx;
 }
 
-.l-title-zhanwei{
-	height: 116rpx;
-}
-.l-title-t{
-	height: 116rpx;
-	text-align: center;
-	width: 100vw;
-	line-height: 116rpx;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	color: #FFFFFF;
-	font-size: 32rpx;
-	z-index: -1;
-}
 .mine-head{
-	padding: 42rpx 42rpx 22rpx 42rpx;
-	border-bottom: 1px solid #BBBBBB;
+	margin-top: 66rpx;
+	color: #FFFFFF;
 	image{
-		width: 102rpx;
-		height: 102rpx;
+		width: 144rpx;
+		height: 144rpx;	
 	}
 	.l-p{
 		margin-left: 28rpx;
-		margin-top: 8rpx;
-		color: rgba(16, 16, 16, 1);
 		font-size: 18px;
 	}
 	.l-span{
 		margin-left: 28rpx;
-		margin-top: 16rpx;
 		position: relative;
-		font-size: 12rpx;
-		color: #101010;
+		font-size: 10px;
+		color: #242424;
+		width: 166rpx;
+		height: 36rpx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #FFFFFF;
+		border-radius: 18rpx;
 	}
-	.l-span::before{
+/* 	.l-span::before{
 		content: '';
 		position: absolute;
 		left: -12rpx;
 		top: 0;
 		width: 14rpx;
 		height: 7px;
-		background: url('../../static/logo.png') no-repeat;
+		background: url('../../static/right@2x.png') no-repeat;
 		background-size: cover;
-	}
+	} */
 	.l-phone{
 		margin-left: 28rpx;
 		margin-top: 18rpx;
+		image{
+			width: 12rpx;
+			height: 18rpx;
+			margin-left: 8px;
+		}
+	}
+	.gologin{
+		width:348rpx;
+		height:47px;
+		background-color: #FFFFFF;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #242424;
+		border-radius: 46rpx;
+		margin-left: 28rpx;
+		font-size: 18px;
+		font-weight: bold; 
 	}
 }
 .mbb{
@@ -380,34 +359,49 @@
 		}
 	}
 }
+.one-line,.four-line,.three-line{
+	padding: 0 24rpx;
+	background-color: #FFFFFF;
+	.title{
+		color: #828282;
+		font-size: 13px;
+		height: 60rpx;
+		display: flex;
+		align-items: center;
+	}
+}
+
 .four-line,.three-line{
-	margin-top: 22rpx;
+	margin-top: 22rpx;	
 }
 .line-operation{
 	display: flex;
 	justify-content: space-between;
-	padding: 22rpx 34rpx 22rpx 20rpx;
+	height: 100rpx;
 	align-items: center;
+	background-color: #FFFFFF;
 	image{
-		width: 48rpx;
-		height: 48rpx;
+		width: 32rpx;
+		height: 32rpx;
 	}
 	.left{
 		image{
 			margin-right: 36rpx;
 		}
 		view{
-			font-size: 28rpx;
+			font-size: 16px;
 			color: #101010;
 		}
 	}
 	.right{
 		view{
-			color: #1E4FDF;
-			font-size: 20rpx;
+			color: #E5403E;
+			font-size: 16px;
 		}
 		image{
 			margin-left: 20rpx;
+			width: 16rpx;
+			height: 26rpx;
 		}
 	}
 }

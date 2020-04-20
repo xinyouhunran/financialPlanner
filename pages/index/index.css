@@ -249,13 +249,32 @@ page{
 	font-size: 30rpx;
 }
 
-.sentiment-all{
+.sentiment-all,.thezone-all{
 	background-color: #FFFFFF;
 	padding-top: 15px;
 }
-.sentiment{
+.sentiment,.thezone{
 	background-color: #FFFFFF;
 	padding: 40rpx 24rpx 0;
+}
+.thezone-item{
+	padding-bottom: 30rpx;
+}
+.thezone-item:nth-of-type(n+2){
+	margin-top: 30rpx;
+}
+.thezone-l{
+	width: 140rpx;
+	height: 140rpx;
+}
+.thezone-r{
+	margin-left: 76rpx;
+	font-size: 17px;
+}
+.thezone-r view:nth-of-type(2){
+	color: #828282;
+	font-size: 14px;
+	margin-top: 20rpx;
 }
 .sentiment-item{
 	padding-bottom: 30rpx;
@@ -342,7 +361,7 @@ page{
 	line-height: 34rpx;
 	text-align: center;
 	font-size: 28rpx;
-	margin: 0 10rpx;
+	margin-left: 10rpx;
 	border-radius: 4rpx;
 }
 .product_all_list .r{
@@ -354,6 +373,7 @@ page{
 	line-height: 30rpx;
 	height: 30rpx;
 	padding: 0 3px;
+	margin-left: 10rpx;
 }
 .product_all_list .middle{
 	font-size: 18px;

@@ -20,7 +20,8 @@
         "modules" : {
             "Push" : {},
             "VideoPlayer" : {},
-            "Share" : {}
+            "Share" : {},
+            "OAuth" : {}
         },
         /* 应用发布信息 */
         "distribute" : {

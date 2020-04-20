@@ -1,0 +1,276 @@
+page,
+body,
+html,
+.l-container {
+	width: 100%;
+}
+
+.l-titleNView {
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: #EDEDED;
+	z-index: 800;
+}
+
+.l-titleNView-place {
+	width: 100%;
+	height: 88rpx;
+	padding: var(--status-bar-height) 0 0;
+}
+
+.l-status {
+	width: 100%;
+	height: var(--status-bar-height);
+}
+
+.l-titleNView-content {
+	display: flex;
+	align-items: center;
+	height: 88rpx;
+	padding: var(--status-bar-height) 24rpx 0;
+}
+
+.l-t-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 74rpx;
+	font-size: 36rpx;
+	flex: 1;
+}
+
+.l-swiper {
+	width: 100%;
+	height: 348rpx;
+}
+
+.l-view-posi {
+	position: absolute;
+	box-sizing: border-box;
+	display: flex;
+	color: #FFFFFF;
+	border-radius: 18rpx;
+	font-size: 20rpx;
+	align-items: center;
+	z-index: 1;
+	padding: 0 10rpx;
+	justify-content: center;
+	right: 30rpx;
+	bottom: 10rpx;
+	min-width: 160rpx;
+	height: 40rpx;
+	background-color: rgba(116, 116, 116, 0.4);
+}
+
+.l-icon-shu {
+	width: 41rpx;
+	height: 41rpx;
+	background-image: url('~@/static/shu@2x.png');
+}
+
+.l-icon-search {
+	width: 41rpx;
+	height: 41rpx;
+	margin-right: 33rpx;
+	background-image: url('~@/static/windzxsh/sousuo@2x.png');
+}
+
+.l-icon-stop {
+	width: 32rpx;
+	height: 32rpx;
+	margin-right: 16rpx;
+	background-image: url('~@/static/road/bofang@2x.png');
+}
+
+.l-body-view-1 {
+	position: relative;
+}
+
+.l-img-road {
+	width: 100%;
+	height: 348rpx;
+}
+
+.l-menu {
+	width: 100%;
+	height: 200rpx;
+	font-size: 30rpx;
+	margin-bottom: 24rpx;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+.l-menu-title {
+	margin-top: 20rpx;
+}
+
+.l-menu-icon,
+.l-icon-date {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.l-menu-icon {
+	display: inline-block;
+	width: 88rpx;
+	height: 88rpx;
+}
+
+.l-icon-date {
+	display: inline-block;
+	width: 38rpx;
+	height: 38rpx;
+	margin-right: 13rpx;
+}
+
+.l-icon-date {
+	background-image: url('~@/static/road/shijian@2x.png');
+}
+
+.l-menu-icon-1 {
+	background-image: url('~@/static/road/huikan@2x.png');
+}
+
+.l-menu-icon-2 {
+	background-image: url('~@/static/road/luyan@2x.png');
+}
+
+.l-menu-icon-3 {
+	background-image: url('~@/static/road/guanyu@2x.png');
+}
+
+
+
+.l-tab{
+	margin-top: 24rpx;
+	width: 100%;
+	height: 84rpx;
+	display: flex;
+	font-size: 32rpx;
+	font-weight: bold;
+	align-items: center;
+}
+
+.l-tab-item{
+	flex: 1;
+	height: 100%;
+	color: #828282;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ECECED;
+}
+
+.l-tab-active{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+.l-scroll{
+	display: none;
+}
+
+.l-display-block{
+	display: block;
+}
+
+.l-scroll-item{
+	box-sizing: border-box;
+	display: flex;
+	width: 100%;
+	height: 87rpx;
+	align-items: center;
+	padding: 0 30rpx ;
+	white-space: nowrap;
+	background-color: #FFFFFF;
+}
+
+.l-si-view{
+	display: inline-block;
+	min-width: 120rpx;
+	max-width: 160rpx;
+	text-align: center;
+	margin-right: 50rpx;
+}
+
+.l-si-view:last-of-type{
+	margin-right: 0;
+}
+
+.l-siv-avatar{
+	margin: 0 auto;
+	width: 120rpx;
+	height: 120rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.l-siv-avatar-company{
+	background: url('~@/static/tuoyuan@2x.png') center/ cover no-repeat;
+}
+
+.l-siv-img{
+	width: 116rpx;
+	height: 116rpx;
+	border-radius: 50%;
+}
+
+.l-siv-name{
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-top: 35rpx;
+	font-size: 26rpx;
+}
+
+.l-scroll-tag-posi{
+	width: 100%;
+	position: fixed;
+	top: calc(var(--status-bar-height) + 88rpx);
+	left: 1;
+	z-index: 666;
+}
+
+.l-img-body-banners{
+	width: 100%;
+	height: 177rpx;
+}
+
+.l-scroll-tag{
+	padding: 0 30rpx;
+	margin-top: 24rpx;
+}
+
+.l-si-item{
+	display: inline-block;
+	min-width: 60rpx;
+	max-width: 160rpx;
+	height: 87rpx;
+	line-height: 87rpx;
+	text-align: center;
+	margin-right: 27rpx;
+	overflow: hidden;
+	font-size: 24rpx;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.l-si-item:last-of-type{
+	margin-right: 0;
+}
+
+.l-si-active{
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #E70012;
+}
+
+.l-body-view-3{
+	padding: 0 30rpx;
+}

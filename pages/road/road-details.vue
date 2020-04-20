@@ -235,7 +235,7 @@
 					id: _this.id
 				};
 				let url = 'roadShow/detail';
-				_this.$get(url, params,{baseUrl:'http://112.74.30.157:9090/'})
+				_this.$get(url, params)
 					.then(res => {
 						if (res.code == 200) {
 							let info = res.content || {};
@@ -274,7 +274,7 @@
 				let url = 'org/fund/list';
 				params.partyId = _this.dataInfo.orgId;
 				_this.status = _this.statusOption.more;
-				_this.$get(url, params,{baseUrl:'http://112.74.30.157:9090/'})
+				_this.$get(url, params)
 					.then(res => {
 						if (res.code == 200) {
 							let info = res.content || {};

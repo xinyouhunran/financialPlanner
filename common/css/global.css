@@ -12,10 +12,29 @@ image{
 	width: 100%;
 	height: 100%;
 }
+.logomain{
+	width: 160rpx;
+	height: 160rpx;
+	margin: 80rpx auto;
+}
+.mybtn{
+	background-color: #D3A35C;
+	width: 680rpx;
+	height: 47px;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 46rpx; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.green{
+	color: green;
+}
 .color82{
 	color: #828282;
 }
-.colore70012{
+.colore70012,.red{
 	color: #E70012;
 }
 .colorD3A35C{
@@ -32,6 +51,18 @@ image{
 }
 .fontweight{
 	font-weight: bold;
+}
+.l-toptitle{
+	height: 88rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 17px;
+	padding: 0 24rpx;
+}
+.l-toptitle image{
+	width: 20rpx;
+	height: 34rpx;
 }
 
 .l-status {

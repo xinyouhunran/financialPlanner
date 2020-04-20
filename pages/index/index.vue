@@ -49,37 +49,37 @@
 			
 			<view class="uni-flex uni-column ptb">
 				<view class="uni-flex l-tab l-flex-jc_sa">
+					<view @tap="$nav({url:'/pages/cash-baby/cash-baby'})">
+						<image src="../../static/88@2x.png" mode=""></image>
+						<text>活期理财</text>
+					</view>
 					<view @tap="$nav({url:'/pages/finance-report/finance-report'})">
 						<image src="../../static/22@2x.png" mode="aspectFill"></image>
 						<text>财经早报</text>
 					</view>
-					<view @tap="$nav({url:'/pages/ranking/ranking'})">
+					<view @tap="$nav({url:'/pages/product-rank/product-rank'})">
 						<image src="../../static/11@2x.png" mode=""></image>
-						<text>产品排行</text>
+						<text>基金排行</text>
 					</view>
-					<view>
-						<image src="../../static/666@2x.png" mode=""></image>
-						<text>路演直播</text>
-					</view>
-					<view @tap="$nav({url:'/pages/personal-card/personal-card'})">
+					<view @tap="$nav({url:'/pages/open-account/open-account'})">
 						<image src="../../static/44@2x.png" mode=""></image>
 						<text>我的名片</text>
 					</view>
 				</view>
 				<view class="uni-flex l-tab l-flex-jc_sa l-mt">
-					<view @tap="$nav({url:'/pages/feedback/feedback'})">
+					<view @tap="$nav({url:'/pages/private-school/private-school'})">
 						<image src="../../static/66@2x.png" mode="aspectFill"></image>
-						<text>私募学堂</text>
+						<text>高端理财</text>
 					</view>
 					<view @tap="$nav({url:'/pages/approve/approve'})">
 						<image src="../../static/77@2x.png" mode=""></image>
 						<text>资产助手</text>
 					</view>
-					<view @tap="$nav({url:'/pages/cash-baby/cash-baby'})">
-						<image src="../../static/88@2x.png" mode=""></image>
-						<text>活期理财</text>
+					<view @tap="$nav({url:'/pages/register/register'})">
+						<image src="../../static/666@2x.png" mode=""></image>
+						<text>路演直播</text>
 					</view>
-					<view @tap="$nav({url:'/pages/attention/attention'})">
+					<view @tap="$nav({url:'/pages/my-choice/my-choice'})">
 						<image src="../../static/10@2x.png" mode=""></image>
 						<text>我的自选</text>
 					</view>
@@ -120,15 +120,8 @@
 					</view>
 				</swiper-item>
 			</swiper>
-			<!-- <view class="l-flex l-flex-jc_c l-flex-ai_c subaoh">
-				<view class="subao">
-					速报
-				</view>
-				<view class="subaoc">
-					王老师分享财经早报，获得5个关注
-				</view>
-			</view> -->
-			<view class="l-view">
+
+			<!-- <view class="l-view">
 				<view class="sentiment-all pl pr">
 					<view class="l-flex l-flex-jc_sb l-flex-ai_c product_all_t">
 						<view class="titleleft">
@@ -205,6 +198,47 @@
 						</view>
 					</view>
 				</view>
+			</view> -->
+			
+			<view class="l-view">
+				<view class="thezone-all pl pr">
+					<view class="l-flex l-flex-jc_sb l-flex-ai_c product_all_t">
+						<view class="titleleft">
+							iFund专区
+						</view>
+						<view class="titlemore">
+							
+						</view>
+					</view>
+				</view>
+				<view class="thezone">
+					<view class="l-flex l-flex-ai_c l-bb thezone-item">
+						<view class="thezone-l">
+							<image src="../../static/dtzq.png" mode=""></image>
+						</view>
+						<view class="thezone-r">
+							<view class="">
+								定投专区
+							</view>
+							<view class="">
+								每次小投入，终身大收益
+							</view>
+						</view>
+					</view>
+					<view class="l-flex l-flex-ai_c thezone-item">
+						<view class="thezone-l">
+							<image src="../../static/wjzq.png" mode=""></image>
+						</view>
+						<view class="thezone-r">
+							<view class="">
+								稳健专区
+							</view>
+							<view class="">
+								稳健理财，安心享收益
+							</view>
+						</view>
+					</view>
+				</view>
 			</view>
 			
 			<view class="l-view">
@@ -220,16 +254,16 @@
 				</view>
 				
 				<view class="product_all_list">
-					<view v-for="(item,index) in productFeature" :key='index'>
+					<view v-for="(item,index) in productFeature" :key='index' @tap="$nav({url:`/pages/product-details/product-details?id=${item.securityId}`})">
 						<view class="l-flex top" :class="{topmt:index!=0}">
 							<view class="l">
-								{{item.name}}
+								{{item.secShortName}}
 							</view>
-							<view class="m" v-if="item.tag1">
-								{{item.tag1}}
+							<view class="m" v-if="item.fav">
+								精选
 							</view>
-							<view class="r" v-if="item.tag2">
-								{{item.tag2}}
+							<view class="r" v-if="item.investStrategy">
+								{{item.investStrategy}}
 							</view>
 						</view>
 						<view class="l-flex middle">
@@ -242,18 +276,18 @@
 							<template v-else>
 								<text>{{item.earnings}}%</text>c
 							</template> -->
-							<text>{{item.netchange}}</text>
-							<text>{{item.latestnet}}</text>
-							<text :class="{'red':item.earnings>0,'green':item.earnings<0}">{{item.earnings}}%</text>
+							<text>{{item.userName}}</text>
+							<text>{{item.nav}}</text>
+							<text :class="{'red':Number(item.returnRateYtd)>0,'green':Number(item.returnRateYtd)<0}">{{item.returnRateYtd=='认证可'?'认证可见':item.returnRateYtd+'%'}}</text>
 						</view>
 						<view class="l-flex l-flex-jc_sb bottom l-bb">
 							<text>理财师</text>
-							<text>净值(03-27)</text>
+							<text>净值{{item.endDateDay}}</text>
 							<text>近一年涨幅</text>
 						</view>
 					</view>
 				</view>
-				<view class="hyp" @click="getProductfeature(2)">
+				<view class="hyp" @click="getProductfeature()">
 					换一批
 				</view>
 			</view>
@@ -265,16 +299,17 @@
 							总管精选
 						</view>
 						<view class="uni-flex">
-							<view class="l-ib" v-for="(v,i) in zxzklabelList" :key="i" :class="{'l-ib-actived': zxzklabelListIndex == i}" @tap="zxzkTab(v.id,i)">{{v.name}}</view>
+							<view class="l-ib" v-for="(v,i) in zxzklabelList" :key="i" :class="{'l-ib-actived': zxzklabelListIndex == v.id}" @tap="zxzkTab(v.id,i)">{{v.name}}</view>
 						</view>
 					</view>
-					<view class="uni-flex l-zb l-flex-jc_sb l-bb zxzkpb" v-for="(v,i) in mainFeature" :key='i'>
+					<view class="uni-flex l-zb l-flex-jc_sb l-bb zxzkpb" v-for="(v,i) in windzxshList" :key='i' @tap="$nav({ url: '/pages/tabbar/windzxsh/windxsh-details?id='+ v.id + '&type='+ v.type })">
 						<view class="l-flex l-flex-direction l-flex-jc_sb">
-							<view class="lt-zx">{{v.content}}</view>
-							<view class="lh"><text class="ltmr">{{v.title}}</text><text>{{v.time}}</text></view>
+							<view class="lt-zx">{{v.title}}</view>
+							<view class="lh"><text class="ltmr">{{v.source}}</text><text>{{v.publishTime}}</text></view>
 						</view>
-						<image :src="v.img" mode="aspectFill"></image>
+						<image src="../../static/1577935511@2x.png" mode="aspectFill"></image>
 					</view>
+					<uni-load-more :status="status" />
 					<!-- <view class="watch-more">
 						点击查看更多
 					</view> -->
@@ -312,41 +347,33 @@
 					bottom:10
 				},
 				
-				productFeature:[{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'+6.88',
-				latestnet:'1.4530',
-				netchange:'风车车',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'-99.90',
-				latestnet:'1.4530',
-				netchange:'风车车',
-				time:'03-24 12:00'
-				},{
-				name:'中战宏观对冲2号',
-				tag1:'精选',
-				tag2:'股票策略',
-				earnings:'0.00',
-				latestnet:'1.4530',
-				netchange:'汤姆',
-				time:'03-24 12:00'
-				}],//产品精选
+				productFeature:[],//产品精选
+				productPageIndex:1,
 				
 				title: '首页',
 				//总管精选tab
 				zxzklabelList:[
-					{name:'独家解读',id:0},
-					{name:'大咖专访',id:1},
-					{name:'总管商学院',id:2},
+					{name:'独家解读',id:15},
+					{name:'大咖专访',id:16},
+					{name:'ifund商学院',id:17},
 					/* {name:'全部',id:3}, */
 					],
-				zxzklabelListIndex:0,
+				zxzklabelListIndex:15,
+				tagIndex: 0,
+				params: {
+					'pageInfo.pageIndex': 1,
+					'pageInfo.pageSize': 10
+				},
+				status: 'loading',
+				statusOption: {
+					loading:'loading',
+					more: 'more',
+					noMore: 'noMore'
+				},
+				tagInterval: null,
+				total:0,
+				windzxshList: [],
+				
 				mainFeature:[{
 				content:'庵后覅玻尿酸房间爱不是的房价看哈水电费空间哈时代峰峻还款时间的发挥空间啊的说法复活甲',
 				title:'国事直通车',
@@ -373,7 +400,21 @@
 		created() {
 			this.getSwiper();
 			this.getProductfeature();
-			this.getMainfeature(3);
+			this.windzxshFn(this.zxzklabelListIndex)
+		},
+		computed:{
+			hasLogin(){
+				return this.$store.getters.hasLogin
+			},
+			qualified(){
+				return this.$store.getters.qualified
+			}
+		},
+		watch:{
+			qualified(){
+				this.productPageIndex = 1;
+				this.getProductfeature();
+			}
 		},
 		onPageScroll(e) {
 			let top = e.scrollTop;
@@ -385,6 +426,18 @@
 				if (this.isTitleNav) {
 					this.isTitleNav = !this.isTitleNav
 				}
+			}
+		},
+		onReachBottom() {
+			let pageInfo = this.params;
+			let list = this.windzxshList;
+			let pageIndex = pageInfo['pageInfo.pageIndex'];
+			let pageSize = pageInfo['pageInfo.pageSize'];
+			let total = this.total;
+			let length = pageIndex * pageSize;
+			if(length < total && list.length === length){
+				++this.params['pageInfo.pageIndex']
+				this.windzxshFn();
 			}
 		},
 		methods: {
@@ -404,18 +457,87 @@
 				this.current = e.detail.current;
 			},
 			//总管精选切换
-			zxzkTab(id,index){
-				this.zxzklabelListIndex = index;
-				this.getMainfeature(id)
+			zxzkTab(id){
+				this.zxzklabelListIndex = id;
+				//this.getMainfeature(id)
+				uni.showLoading({
+					title: '加载中',
+					mask: true
+				})
+				this.tagInterval = null;
+				this.tagIndex = id;
+				this.params['pageInfo.pageIndex'] = 1;
+				this.windzxshList = [];
+				this.windzxshFn(id);
+			},
+			windzxshFn(id){
+				let _this = this;
+				let params = JSON.parse(JSON.stringify(_this.params));
+				/* let label = this.labelList[this.tagIndex] || {}
+				if(label.cateId){
+					params.cateId = label.cateId
+				} */
+				params.cateId = id;
+				let url = 'news/pageList';
+				
+				_this.status = _this.statusOption.loading;
+				_this.$get(url, params)
+				.then(res => { 
+					uni.hideLoading()
+					if(res.code == 200){
+						let info = res.content || {};
+						
+						_this.total = info.pageInfo && info.pageInfo.recordCount || 0;
+						
+						let data = info.list || [];
+						
+						_this.windzxshList = _this.windzxshList.concat(data);
+						
+						if(_this.windzxshList.length == _this.total){
+							_this.status = _this.statusOption.noMore;
+						}
+					}
+				}).catch(res => {
+					uni.hideLoading()
+				})
 			},
 			//获取产品精选
-			getProductfeature(page){
-				this.$post('getProductFeature',{
-					page
-				}).then(data=>{
-					//this.productFeature = data;
-				}).catch(err=>{
-					this.$toast(JSON.stringify(err));
+			getProductfeature(){
+				
+				let params = { 
+					'pageInfo.pageSize': 3,
+					'pageInfo.pageIndex': this.productPageIndex,
+					labelId : 13
+				};
+				let url = 'business/superProduce';
+				uni.showLoading({
+					title:'加载中...'
+				})
+				this.$get(url, params)
+				.then(res => { 
+					if(res.code == 200){
+						let info = res.content || {};
+						
+						let data = info.list.map(item=>{
+							item.nav = item.nav!='认证可见'?item.nav.padEnd(6,'0'):item.nav;
+							item.returnRateYtd = item.returnRateYtd.slice(0,-1);
+							if(item.endDate&&item.endDate!='认证可见'){
+								let d = new Date(item.endDate);
+								item.endDateDay = [d.getMonth() + 1, d.getDay()].map(e => e > 9 ? e : '0' + e).join('-');
+							}else{
+								item.endDateDay = ''
+							}
+							return item;
+						}) || [];
+						
+						if(data.length){
+							this.productFeature = data;
+							++this.productPageIndex;
+						}else{
+							this.$toast('没有更多数据了')
+						}
+						uni.hideLoading();
+					}
 				})
 			},
 			//获取总管精选

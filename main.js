@@ -20,6 +20,8 @@ try{
 }catch(e){
 	throw e
 }
+Vue.prototype.$config = config;
+Vue.prototype.$getSystem = uni.getSystemInfoSync(); 
 
 const app = new Vue({
     ...App,
