@@ -1,14 +1,6 @@
 <template>
 	<view>
-		<!-- <view class="l-view sale-t l-flex l-flex-jc_c">
-			<view class="sale-search l-flex">
-				<span class="l-icon l-icon-search"></span>
-				<view class="af">
-					请输入产品
-				</view>
-			</view>
-		</view> -->
-		<view class="l-status"></view>
+		<!-- <view class="l-status"></view>
 		<view class="public-private l-flex l-flex-ai_c l-flex-jc_sb l-view">
 			<view class="l" @tap="$back(1)">
 				<image src="../../static/back@2x.png" mode=""></image>
@@ -26,37 +18,14 @@
 			</view>
 		</view>
 		
-		<!-- <view class="screen l-flex l-flex-jc_sa l-flex-ai_c">
-			<view class="screen-item">
-				<view class="l-flex l-flex-ai_c">
-					<view class="" @tap="tab=1">
-						智能推荐
-					</view>
-					<image src="../../static/down@2x.png" mode=""></image>
-				</view>
-				<view class="recom" :class="{'recom-active':tab==1}">
-					
-				</view>
-			</view>
-			<view class="screen-item">
-				<view class="l-flex l-flex-ai_c">
-					<view class="" @tap="tab=2">
-						筛选
-					</view>
-					<image src="../../static/down@2x.png" mode=""></image>
-				</view>
-				<view class="recom1" :class="{'recom1-active':tab==2}">
-					
-				</view>
-			</view>
-		</view> -->
-		
-		<private-sale></private-sale>
+		<private-sale></private-sale> -->
 
+        <web-view :src="webSrc" v-if="webSrc"></web-view>
 	</view>
 </template>
 
 <script>
+	import {geth5} from '@/utils/geth5.js'
 	import privateSale from "./private-sale";
 	export default {
 		components:{
@@ -64,13 +33,41 @@
 		},
 		data() {
 			return {
+				userId:'',
+				flag:'17',
+				webSrc:'',
+				
 				productTag:1,
-				
 				tab:1,
-				
 			}
 		},
+		onLoad() {
+			this.init()
+		},
 		methods: {
+			init(){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;
+					this.$toast('正在加载...',{duration:4000})
+					geth5(this.flag,this.userId
+					).then(data=>{
+						this.webSrc = data;
+					}).catch(err=>{
+						/* if(err=='307'){
+							this.$nav({url:'/pages/register/register'})
+						} */
+					})
+				}else{
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'});
+							},3000)		
+						}
+					});
+				}
+			},
 			changeProduct(tag){
 				this.productTag = tag;
 			},

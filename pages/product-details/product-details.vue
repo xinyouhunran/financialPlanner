@@ -363,7 +363,7 @@
 				vSwitchIndex: 0,
 
 				vSwitch: [{
-						title: '收益回撤',
+						title: '收益走势',
 						sub: ''
 					},
 					{

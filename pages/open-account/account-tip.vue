@@ -10,12 +10,12 @@
 			<view class="item" :class="{'item-active':tip2}">
 				2
 			</view>
-			<view class="line">
+			<!-- <view class="line">
 				
-			</view>
-			<view class="item" :class="{'item-active':tip3}">
+			</view> -->
+			<!-- <view class="item" :class="{'item-active':tip3}">
 				3
-			</view>
+			</view> -->
 		</view>
 		<view class="tip-name">
 			<view :class="{'tip-name-active':tip1}">
@@ -24,9 +24,9 @@
 			<view :class="{'tip-name-active':tip2}">
 				绑定银行卡
 			</view>
-			<view :class="{'tip-name-active':tip3}">
+			<!-- <view :class="{'tip-name-active':tip3}">
 				交易密码
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -87,7 +87,7 @@
 		.line{
 			height: 1px;
 			background-color: #EDEDED;
-			width: 210rpx;
+			width: 488rpx;
 		}
 	}
 	.tip-name{

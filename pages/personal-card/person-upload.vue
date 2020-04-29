@@ -32,12 +32,11 @@
 		},
 		data() {
 			return {
-				
 			}
 		},
 		methods: {
 			add(){
-				this.$emit('selectPro')
+				this.$emit('selectUpload')
 			}
 		}
 	}

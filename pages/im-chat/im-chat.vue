@@ -213,6 +213,9 @@
 			},
 			user(){
 				return this.$store.getters.user;
+			},
+			unread(){
+				return this.$store.getters.unread;
 			}
 		},
 		data() {
@@ -260,12 +263,21 @@
 				popupLayerClass:'',
 				// more参数
 				hideMore:true,
+				chatType: '',
+				chatContent: '',
+				unreadList: [],
+				customerUserId: '',
 				//表情定义
 				hideEmoji:true,
 			};
 		},
 		onLoad(option) {
 			_self = this;
+			this.chatType = this.$getStorage('chatType') || '';
+			if(this.chatType){
+				this.targetId = this.$getStorage('targetId')
+			}
+			
 			this.nowDate = this.$yymmdd();
 			// 赋值聊天对象的username，nickname等信息
 				// 设置标题
@@ -292,6 +304,11 @@
 					this.jpushIM.getUserInfo(param, (callback) => {
 						this.chatUser = callback.data;
 					})
+					let user = this.user;
+					if(user.type == 0 || user.type == 1 || user.type == 5){
+						this.unreadInfo()
+					}
+					
 					// 重置会话消息未读数
 					this.jpushIM.resetUnreadMessageCount({"type":"single","username":this.chatUsername});
 					// 如果没有登录
@@ -338,34 +355,92 @@
 		onShow(){
 			this.scrollTop = 9999999;
 		},
+		onUnload() {
+		},
 		methods:{
+			removeStoage(){
+				this.$getStorage('targetId', '')
+				this.$setStorage('chatType', '')
+			},
+			unreadInfo(bool){
+				let params = { investorUerId:this.chatUsername };
+				let url = 'user/chat/list';
+				this.$get(url, params)
+				.then(res => {
+					if(res.code == 200){
+						let data = res.content || [];
+						this.$store.commit('setUnradList', data.list || []);
+						if(data.list.length && bool){
+							this.chatReadSubmit()
+						}
+					}
+				})
+			},
+			chatSubmit(){
+				if(!this.targetId){
+					return
+				}
+				let params = { type:this.chatType, customerUserId: this.chatUsername, content: this.chatContent || '1'  };
+				if(this.targetId){
+					params.targetId= this.targetId
+				}
+				
+				let url = 'user/chat/submit';
+				this.$post(url, params)
+				.then(res => {
+				})
+			},
+			chatReadSubmit(){
+				let length = this.unread.length
+				if(!length){
+					return
+				}
+				let info = this.unread[length - 1]
+				if(info){
+					this.chatType = info.type;
+					this.targetId = info.targetId;
+					this.submitServer()
+				}
+				let params = { ids: this.unread.map(e => e.id) };
+				let url = 'user/chat/read';
+				this.$post(url, params)
+				.then(res => {
+					if(res.code == 200){
+						this.$store.commit('setUnradList', []);
+					}
+				})
+			},
 			submitServer(){
 				let _this = this;
 				let user = _this.user;
-				if(user.type == 0 || user.type == 1){
-					let sDate = _this.$getStorage('nowDate');
-					let serverIds = _this.$getStorage('serverIds');
-					if(!sDate || sDate !== this.nowDate){
-						 _this.$setStorage('nowDate', this.nowDate);
-						 if(serverIds){
-							  serverIds = []
-						 }
-						 _this.$setStorage('serverIds', []);
-					}
-					if(serverIds.indexOf(_this.chatUsername) != -1){
+				if(user.type == 0 || user.type == 1 || user.type == 5){
+					// let sDate = _this.$getStorage('nowDate');
+					// let serverIds = _this.$getStorage('serverIds');
+					// if(!sDate || sDate !== this.nowDate){
+					// 	 _this.$setStorage('nowDate', this.nowDate);
+					// 	 if(serverIds){
+					// 		  serverIds = []
+					// 	 }
+					// 	 _this.$setStorage('serverIds', []);
+					// }
+					// if(serverIds.indexOf(_this.chatUsername) != -1){
 						
-						let params = { investorUserId: _this.chatUsername };
-						let url = 'user/customer/service/submitService';
 						
-						_this.$get(url, params)
-						.then(res => {
-							if(res.code == 200){
-								serverIds.push(_this.chatUsername);
-								_this.$setStorage('serverIds', serverIds);
-							}
-						}).catch(res => {
-						})
+					// }
+					
+					let params = { type:this.chatType,investorUserId: _this.chatUsername, content: this.chatContent || '1' };
+					let url = 'user/customer/service/submitService';
+					if(this.targetId){
+						params.targetId= this.targetId
 					}
+					_this.$post(url, params)
+					.then(res => {
+						if(res.code == 200){
+							// serverIds.push(_this.chatUsername);
+							// _this.$setStorage('serverIds', serverIds);
+						}
+					}).catch(res => {
+					})
 				}
 			},
 			getPeopleInfoFn(){
@@ -757,6 +832,9 @@
 				// let content = this.replaceEmoji(this.textMsg);
 				let content = this.textMsg;
 				let msg = {text:content}
+				if(this.chatType){
+					this.chatContent = content
+				}
 				this.sendMsg(msg,'text');
 				this.textMsg = '';//清空输入框
 			},
@@ -807,6 +885,18 @@
 					
 					// 发送消息
 					this.screenMsg(msg);
+					let user = this.user;
+					if(user.type == 0 || user.type == 1 || user.type == 5){
+						if(this.unread.length){
+							this.chatReadSubmit()
+						}else{
+							this.unreadInfo(true)
+						}
+					}else{
+						if(this.targetId){
+							this.chatSubmit();
+						}
+					}
 				}, response => {
 					// 失败
 					uni.showModal({

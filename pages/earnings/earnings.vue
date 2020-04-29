@@ -5,7 +5,7 @@
 				<view class="l-title-nview-status"></view>
 				<view class="l-title-nview">
 					<view class="l-title-nview-back"  @tap="$back()">
-						<image class="l-icon-back" src="../../../static/mine/back@2x.png" mode="aspectFill"></image>
+						<image class="l-icon-back" src="../../static/mine/back@2x.png" mode="aspectFill"></image>
 					</view>
 					<view class="l-title-nview-h1">
 						基金账本
@@ -60,7 +60,7 @@
 				<view class="l-ebt-title">
 					我的账本
 				</view>
-				<view class="l-ebt-btn" @tap="$nav({ url: '/pages/tally/tally-search' })">
+				<view class="l-ebt-btn" @tap="goTallySearch">
 					<span>+</span>
 					<span>新增</span>
 				</view>
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex';
 	export default {
 		data(){
 			return {
@@ -137,6 +138,14 @@
 				total: 0,
 				nowStr: '01-01'
 			}
+		},
+		computed:{
+			...mapState({
+				hasLogin:'hasLogin',
+				qualified:'qualified',
+				user:'user',
+				employmentCertStatus:'employmentCertStatus'
+			})
 		},
 		onReachBottom() {
 			let pageInfo = this.params;
@@ -228,13 +237,26 @@
 			getDateStr(buyDate){
 				let d = buyDate ? new Date(buyDate.replace(/\-/g,'/')) : new Date();
 				return [d.getMonth() + 1, d.getDate()].map(e => e > 9 ? e : '0' + e).join('-')
+			},
+			goTallySearch(){
+				if(this.qualified){
+					this.$nav({ url: '/pages/tally/tally-search' })
+				}else{
+					this.$toast('未认证,即将跳转认证页面',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({ url: '/pages/approve/approve' })
+							},3000)
+						}
+					})
+				}		
 			}
 		}
 	}
 </script>
 
 <style scoped>
-	@import url("./earnings.css");
+	@import url("./earnings.css"); 
 </style>
 
 <style scoped>

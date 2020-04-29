@@ -8,7 +8,7 @@ const config = {
 }
 
 export default config */
-const $base = 'http://120.24.108.106'
+const $base = 'http://47.115.30.217'//'http://120.24.108.106''http://47.115.30.217''http://192.168.1.27'//本地---开发---正式：  
 const config = {
 	$baseUrl: `${ $base }:9092/`,
 	$pcUrl: `${ $base }:7070/`,

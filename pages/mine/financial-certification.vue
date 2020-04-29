@@ -6,7 +6,7 @@
 				<view class="">
 					真实姓名
 				</view>
-				<input type="text" v-model="name" placeholder="请输入真实姓名" placeholder-class="placeclass" @change="checkName()" maxlength="15"/>
+				<input type="text" v-model="userName" placeholder="请输入真实姓名" placeholder-class="placeclass" maxlength="15"/>
 			</view>
 			<view class="noicon l-bb">
 				<view class="">
@@ -29,46 +29,208 @@
 				<view class="">
 					职务
 				</view>
-				<input type="text" v-model="position" placeholder="请输入您在机构的职位名称" placeholder-class="placeclass" @change="checkId()"/>
+				<input type="text" v-model="positionName" placeholder="请输入您在机构的职位名称" placeholder-class="placeclass" maxlength="15"/>
 			</view>
 			<view class="noicon l-bb">
 				<view class="">
 					从业年限
 				</view>
-				<input type="number" v-model="workYear" placeholder="请输入您在机构的职位名称" placeholder-class="placeclass" @change="checkId()"/>
+				<input type="text" v-model="employmentYear" placeholder="请选择从业年限" placeholder-class="placeclass" @tap="selectYear" disabled/>
 			</view>
 		</view>
+		<template>			
+			<view class="person-upload" v-if="personalCardImg" @tap="getImage(1,27,1)">
+				<view class="person-upload-t">
+					个人名片
+				</view>
+				<image :src="personalCardImg" mode="" class="person-upload-img"></image>
+			</view>
+			<person-upload v-else class="zyzp" title="个人名片" addText="请上传个人名片" addTip="请上传与您姓名电话一致的纸质名片照片便于审核认证您的理财师身份" @selectUpload="getImage(1,27,1)"></person-upload>
+		</template>
 		
-		<person-upload class="zyzp" title="个人名片" addText="请上传个人名片" addTip="请上传与您姓名电话一致的纸质名片照片便于审核认证您的理财师身份"></person-upload>
-		<person-upload class="zyzp" title="资格证书(选填)" addText="请上传相关资格证书" addTip="请上传您的基金、证券、保险、银行从业等资格证，以提高您的佣金及形象"></person-upload>
+		<template>
+			<view class="person-upload" v-if="qualificationCertImg" @tap="getImage(1,27,2)">
+				<view class="person-upload-t">
+					资格证书(选填)
+				</view>
+				<image :src="qualificationCertImg" mode="" class="person-upload-img"></image>
+			</view>
+			<person-upload v-else class="zyzp" title="资格证书(选填)" addText="请上传相关资格证书" addTip="请上传您的基金、证券、保险、银行从业等资格证，以提高您的佣金及形象" @selectUpload="getImage(1,27,2)"></person-upload>
+		</template>
 		
 		<view class="mybtn next" @tap="next">
 			下一步
 		</view>
+		
+		<w-picker
+		        mode="selector"
+		        default-type="name"
+				:default-props="defaultProps"
+		        :options="yearList"
+		        @confirm="onConfirm($event,'selector')" 
+		        ref="selector" 
+		    ></w-picker>
 	</view>
 </template>
 
 <script>
-	import personUpload from '../personal-card/person-upload.vue'
+	import personUpload from '../personal-card/person-upload.vue';
 	export default {
 		components:{
 			personUpload
 		},
 		data() {
 			return {
-				name:'',
-				position:'',
-				workYear:'',
-				sex:1
+				tempFilePaths:[],
+				userName:'',
+				positionName:'',
+				employmentYearNum:null,
+				employmentYear:'',
+				
+				sex:1,
+				personalCardImg:'',
+				qualificationCertImg:'',
+				userId:'',
+				orgType:null,
+				orgName:'',
+				
+				yearList:[{
+					name:'1年以内',
+					id:1
+				},
+				{
+					name:'1年到3年',
+					id:2
+				},
+				{
+					name:'3年到5年',
+					id:3
+				},
+				{
+					name:'5年到10年',
+					id:4
+				},
+				{
+					name:'10年以上',
+					id:5
+				}],
+				defaultProps:{"label":"name","value":"id"}
+
 			}
+		},
+		onLoad(obj) {
+			if(typeof this.$getStorage('user')==='object'){
+				let user = this.$getStorage('user').userInfo;
+				this.userId = user.id;
+			}else{
+				this.$toast('您还未登录，即将跳转登录页',{
+					fn:()=>{
+						this.$nav({url:'/pages/register/register'});
+					}
+				});
+			}
+			if(obj.orgType){
+				this.orgType = Number(obj.orgType)
+			}
+			if(obj.orgName){
+				this.orgName = obj.orgName;
+			}	
 		},
 		methods: {
 			changeSex(index){
 				this.sex = index;
 			},
 			next(){
-				this.$nav({url:'/pages/mine/financial-result'})
-			}
+				if(!this.userName.trim()){
+					this.$toast('请输入姓名');
+					return;
+				}
+				if(!this.positionName.trim()){
+					this.$toast('请输入职务');
+					return;
+				}
+				console.log(this.employmentYearNum);
+				if(!this.employmentYearNum){
+					this.$toast('请选择从业年限');
+					return;
+				}
+				if(!this.personalCardImg){
+					this.$toast('请上传个人名片');
+					return;
+				}
+				let url = 'user/center/finance/employmentCertSaveOrUpdate'; 
+				let {
+					userName,
+					positionName,
+					sex,
+					employmentYearNum,
+					userId,
+					personalCardImg,
+					qualificationCertImg,
+					orgType,
+					orgName
+				} = this;
+				this.$post(url,{
+					userName,
+					positionName,
+					sex,
+					employmentYearNum,
+					userId,
+					personalCardImg,
+					qualificationCertImg,
+					orgType,
+					orgName
+				}).then(data=>{
+					console.log(data);
+					this.$store.dispatch('getUserFn').then(data=>{
+						setTimeout(()=>{
+							this.$nav({url:'/pages/mine/financial-result'})
+						},3000)
+					})
+				}).catch(err=>{
+					console.log(err);
+				})
+			},
+			getImage(num,type,flag){
+				uni.chooseImage({
+					count:num, 
+					sizeType: ['original', 'compressed'],
+					sourceType:['album'],
+					success: (res) => {
+						let tempFilePaths = this.tempFilePaths = res.tempFilePaths;
+						this.uploadAjax(tempFilePaths,type,flag);
+					}
+				})
+			},
+			uploadAjax(filePaths,type,flag){
+				let url = 'user/center/img/upload';
+				let params = {
+					formData:{
+						type: type
+					},
+				}
+				this.$upload(url, filePaths[0], params)
+				.then(res => {
+					if(res.code == 200){ 
+						console.log(res);
+						if(flag==1){
+							this.personalCardImg = res.content && res.content.lmtSrc || '';
+						}
+						if(flag==2){
+							this.qualificationCertImg = res.content && res.content.lmtSrc || ''; 
+						}
+					}else{
+						this.$toast(res.message);
+					}
+				});
+			},
+			selectYear(){
+				this.$refs.selector.show()
+			},
+			onConfirm(e,str){
+				this.employmentYear = e.result;
+				this.employmentYearNum = e.value;
+			},
 		}
 	}
 </script>
@@ -115,5 +277,20 @@
 }
 .next{
 	margin: 80rpx auto 0;
+}
+.person-upload{
+	background-color: #FFFFFF;
+	padding-bottom: 24rpx;
+	overflow: hidden;
+	&-t{
+		margin-left: 30rpx;
+		margin-top: 28rpx;
+		font-size: 36rpx;
+	}
+	&-img{
+		width: 700rpx;
+		height: 306rpx;
+		margin: 32rpx auto 0;
+	}
 }
 </style>

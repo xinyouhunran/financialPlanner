@@ -1,7 +1,7 @@
 <template>
 	<view class="aboutus">
 		<view class="l-flex l-flex-direction l-flex-ai_c">
-			<image src="../../static/rzg@2x.png" mode="" class="logo"></image>
+			<image src="../../static/register-login/mainlogo.png" mode="" class="logo"></image>
 			<text class="name">iFund</text>
 			<text class="version">版本号{{ $config.$versions }}</text>
 		</view>

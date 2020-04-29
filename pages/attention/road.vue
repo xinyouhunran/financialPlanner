@@ -1,7 +1,7 @@
 <template>
-	<view class="l-module-item" @tap="$nav({url: '/pages/tabbar/road/road-details?id=' + dataInfo.id})">
+	<view class="l-module-item" @tap="$nav({url: '/pages/tabbar/road/road-details?id=' + dataInfo.roadShowId})">
 		<view class="l-module-top">
-			<image class="l-img-banner" :src="dataInfo.coverImageUrl || ''" mode="aspectFill"></image>
+			<image class="l-img-banner" :src="dataInfo.coverH5ImageUrl || ''" mode="aspectFill"></image>
 			<view class="l-view-posi">
 				<text class="l-icon l-icon-stop"></text>
 				<text class="l-mt-date">{{ dataInfo.duration || '00:00:00' }}</text>

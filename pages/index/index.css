@@ -4,7 +4,11 @@ html,
 page{
 	background-color: #FFFFFF;
 }
-
+.my-scroll{
+		width: 400rpx;
+		white-space: nowrap;
+		height: 44rpx;
+	}
 .l-titleNView {
 	width: 100%;
 }
@@ -468,6 +472,8 @@ page{
 .l-ib{
 	margin-left: 26rpx;
 	font-size: 26rpx;
+	display: inline-block;
+	padding-bottom: 10rpx;
 }
 .l-ib-actived{
 	color: #D3A35C;

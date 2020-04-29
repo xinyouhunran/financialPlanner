@@ -36,7 +36,8 @@
 				downTime:60,
 				isGetCode:false,
 				userName:'',
-				code:''
+				code:'',
+				setInfo: 'user/center/info/update',
 			}
 		},
 		onLoad(obj) {
@@ -125,14 +126,56 @@
 					.then(res => {
 						if (res.code == 200) {
 							this.$store.dispatch('setToken', res.content);
-							this.$nav({url:"/pages/index/index"},"switchTab");	
+							this.$store.dispatch('setUser',res.content)
+							.then(data=>{
+								if(typeof this.$getStorage('user')==='object'){
+									let user = this.$getStorage('user').userInfo;
+									let userId = user.id;
+									this.$post('user/openAccount/getUserOpenAccountInfo',{
+										userId
+									}).then(data=>{
+										if(data.code=='200'){
+											this.$nav({url:'/pages/index/index'},'switchTab');
+										}else{
+											this.$nav({url:"/pages/open-account/open-account"});
+										}
+									}).catch(err=>{
+										this.$toast(JSON.stringify(err))
+									})
+								}else{
+									this.$toast('您还未登录，即将跳转登录页',{
+										fn:()=>{
+											this.$nav({url:'/pages/register/register'});
+										}
+									});
+								}
+								
+							}).catch(err=>{
+								console.log('err');
+							})
+							/* if(!res.content.userInfo.jgInfo){
+								this.up();
+								this.$store.dispatch('register', res.content);
+							} */
+							//this.$nav({url:"/pages/open-account/open-account"});
 						} else if (res.code == 404) {
 							console.log('404')
 						}
 					}).catch(res => {
 				
 					})
-			}
+			},
+			/**
+			 * 注册im
+			 */
+			up(){
+				let params = { jgInfo:true };
+				let url = this.setInfo;
+				this.$post(url, params)
+					.then(res => {
+						if (res.code == 200) {}
+					})
+			},
 		}
 	}
 </script>

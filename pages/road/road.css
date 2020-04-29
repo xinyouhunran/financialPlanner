@@ -237,7 +237,7 @@ html,
 
 .l-scroll-tag-posi{
 	position: sticky;
-	top: calc(var(--status-bar-height) + 94rpx);
+	top: var(--status-bar-height); 
 	left: 1;
 	z-index: 666;
 	
@@ -245,7 +245,8 @@ html,
 
 .l-scroll-tag-fixed{
 	position: fixed;
-	top: calc(var(--status-bar-height) + 94rpx - 24rpx);
+	top: 0;
+	/* calc(var(--status-bar-height) + 94rpx - 24rpx) */
 	left: 0;
 	width: 100%;
 	z-index: 666;
@@ -253,7 +254,7 @@ html,
 
 .l-scroll-tag{
 	padding: 0 30rpx;
-	margin-top: 24rpx;
+	/* margin-top: 24rpx; */
 }
 
 .l-si-item{

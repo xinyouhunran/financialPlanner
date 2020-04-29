@@ -14,7 +14,7 @@
 				</view>
 			</view>
 		</view>
-		
+		 
 		<view class="l-main">
 			<view class="l-view-1">
 				<view class="l-view-1-left l-txt-hidden">

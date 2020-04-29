@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="l-status"></view>
+		<!-- <view class="l-status"></view>
 		<view class="product-rank">
 			<view class="public-private l-flex l-flex-ai_c l-flex-jc_sb l-view">
 				<view class="l" @tap="$back(1)">
@@ -191,17 +191,46 @@
 					没有自选，点击添加 
 				</view>
 			</view>	
-		</template>
+		</template> -->
+		<web-view :src="webSrc" v-if="webSrc"></web-view>
 	</view>
 </template>
 
 <script>
+	import {geth5} from '@/utils/geth5.js'
 	export default {
 		data() {
 			return {
+				userId:'',
+				flag:'7',
+				webSrc:'',
+				
 				productTag:0,
 				value:1,
 				productChoice:0 
+			}
+		},
+		onLoad(obj) {
+			if(typeof this.$getStorage('user')==='object'){
+				let user = this.$getStorage('user').userInfo;
+				this.userId = user.id;
+				this.$toast('正在加载...',{duration:4000})
+				geth5(this.flag,this.userId
+				).then(data=>{
+					this.webSrc = data;
+				}).catch(err=>{
+					/* if(err=='307'){
+						this.$nav({url:'/pages/register/register'})
+					} */
+				})
+			}else{
+				this.$toast('您还未登录，即将跳转登录页',{
+					fn:()=>{
+						setTimeout(()=>{
+							this.$nav({url:'/pages/register/register'})
+						},3000)
+					}
+				});
 			}
 		},
 		methods: {
@@ -213,10 +242,10 @@
 </script>
 
 <style lang="scss" scoped>
-.container{
+/* .container{
 	background-color: #F4F4F4;
 	min-height: 100vh;
-}
+} */
 .public-private{
 	height: 88rpx;
 	background-color: #FFFFFF;

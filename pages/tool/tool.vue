@@ -95,7 +95,7 @@
 			<view class="l-flex l-flex-wrap">
 				<view class="tool-item">
 					<view class="">
-						<image src="../../static/tool/kh@2x.png" mode=""></image>
+						<image src="../../static/tool/kh@2x.png" mode="" @tap="$nav({url:'/pages/tool/customer-manager'})"></image>
 					</view>
 					<view class="">
 						客户管理
@@ -103,7 +103,7 @@
 				</view>
 				<view class="tool-item">
 					<view class="">
-						<image src="../../static/tool/gz@2x.png" mode=""></image>
+						<image src="../../static/tool/gz@2x.png" mode="" @tap="$nav({url:'/pages/tool/data-track'})"></image>
 					</view>
 					<view class="">
 						数据跟踪
@@ -111,7 +111,7 @@
 				</view>
 				<view class="tool-item">
 					<view class="">
-						<image src="../../static/tool/gl@2x.png" mode=""></image>
+						<image src="../../static/tool/gl@2x.png" mode="" @tap="$nav({url:'/pages/tool/product-manage'})"></image>
 					</view>
 					<view class="">
 						产品管理
@@ -163,6 +163,9 @@
 			return {
 				
 			}
+		},
+		onLoad() {
+			uni.report('opentool');
 		},
 		methods: {
 			

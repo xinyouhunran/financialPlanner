@@ -4,7 +4,7 @@
 			{{title}}
 		</view>
 		<view class="person-textarea-text">
-			<textarea value="" placeholder="描述文字（限制150字）" placeholder-style="color:#afafaf;" class="mytext" maxlength="150"/>
+			<textarea v-model="descripe" placeholder="描述文字（限制150字）" placeholder-style="color:#afafaf;" class="mytext" maxlength="150" :disabled="disableFlag"/>
 		</view>
 	</view>
 </template>
@@ -18,11 +18,15 @@
 		},
 		data() {
 			return {
-				
+				descripe:'',
+				disableFlag:false
 			}
 		},
 		methods: {
-			
+			setValue(v,flag){
+				this.descripe = v;
+				this.disableFlag = flag;
+			}
 		}
 	}
 </script>

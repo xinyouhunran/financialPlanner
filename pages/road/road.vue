@@ -13,15 +13,16 @@
 			<view class="l-titleNView-place"></view>
 		</view> -->
 		<!-- @tap="$nav({url: '/pages/tabbar/road/road-details?id=' + s.id})" -->
-		<swiper class="l-swiper" indicator-active-color="#ffffff" v-if="bannerList.length"
-		indicator-color="#9A999E" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+		<swiper class="l-swiper" indicator-active-color="#ffffff"
+		indicator-color="#9A999E" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" style="height: 174px;">
 			<swiper-item v-for="(s, i) in bannerList" :key="i" >
 				<view class="l-body-view l-body-view-1" >
-					<image class="l-img-road" :src="s.picUrl" mode="aspectFit"></image>
+					<image class="l-img-road" :src="s.picUrl" mode="aspectFit" @tap="$nav({url:`/pages/tabbar/road/road-details?id=${s.id}`})"></image>
 					<!-- <view class="l-view-posi">
 						<text class="l-icon l-icon-stop"></text>
 						<text class="l-mt-date">{{ s.duration }}</text>
 					</view> -->
+					
 				</view>
 			</swiper-item>
 		</swiper>
@@ -50,7 +51,7 @@
 			<scroll-view class="l-scroll-item" scroll-x="true" >
 				<view class="l-si-view" v-for="(s,i) in orgList" :key="i"  @tap="$nav({ url: '/pages/tabbar/road/road-guest?type=1&id='+ s.partyId })">
 					<view class="l-siv-avatar l-siv-avatar-company">
-						<image class="l-siv-img" src="../../../static/gongsi@2x.png" mode="aspectFill"></image>
+						<image class="l-siv-img" src="../../static/gongsi@2x.png" mode="aspectFill"></image>
 					</view>
 					<view class="l-siv-name">
 						{{ s.partyShortName }}
@@ -217,6 +218,16 @@
 					if(res.code == 200){
 						let info = res.content || [];
 						_this.bannerList = info;
+						_this.bannerList = [{
+							picUrl:'../../static/road/banner1.jpg',
+							id:'449639975017775110'
+						},{
+							picUrl:'../../static/road/banner2.jpg',
+							id:'449639975017775108'
+						},{
+							picUrl:'../../static/road/banner3.jpg',
+							id:'449639975017775109'
+						}]
 					}
 				})
 			},

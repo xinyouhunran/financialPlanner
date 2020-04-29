@@ -17,7 +17,7 @@
 				下一步
 			</view>
 			<view class="tip">
-                <span>点击“下一步”即同意 </span><span>《用户协议》</span>
+                <span>点击“下一步”即同意 </span><span @tap="$nav({url:'/pages/register/user-agreement'})">《用户协议》</span>
 			</view>
 		</view>
 	</view>
@@ -32,7 +32,15 @@
 				resultData:{}
 			}
 		},
+		onLoad() {
+			this.init()	
+		},
 		methods: {
+			init(){
+				this.$nextTick(()=>{
+					this.verifyReset();
+				})
+			},
 			isPhone(str){
 				let reg = /^(\d{3})\d{4}(\d{4})$/;
 				let rega = /^1[3456789]\d{9}$/;
@@ -63,11 +71,21 @@
 			next(){
 				if(this.isPhone(this.phone)){
 					if(this.resultData.flag){
-						if(false){
-							this.$nav({url:`/pages/register/pass-login?userName=${this.phone}`});
-						}else{
-							this.$nav({url:`/pages/register/register-invite?userName=${this.phone}`});
-						}				
+						let url = 'auth/getUserInfo';
+						let params = {
+							phone:this.phone,
+							verificationCode:''
+						}
+						this.$post(url,params)
+						.then(data=>{
+							if(data.content){
+								this.$nav({url:`/pages/register/pass-login?userName=${this.phone}`});
+							}else{
+								this.$nav({url:`/pages/register/register-invite?userName=${this.phone}`});
+							}
+						}).catch(err=>{
+							this.$toast('验证失败')
+						})			
 					}else{
 						this.$toast('您还未进行验证')
 					}
@@ -94,6 +112,7 @@
 		}
 		input{
 			font-size: 15px;
+			flex: 1;
 		}
 		.placeclass{
 			color: #afafaf;

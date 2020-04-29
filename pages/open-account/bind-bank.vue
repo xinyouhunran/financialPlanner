@@ -39,10 +39,12 @@
 				</view>
 			</view>
 			
-			<view class="mes l-view">
+			<!-- <view class="mes l-view">
 				<span>点击“下一步”按钮，即表示您同意</span>
-				<span>《银行转账授权协议》《快捷支付服务协议》《投资人权益协议》</span>
-			</view>
+				<span>《银行转账授权协议》</span>
+				<span>《快捷支付服务协议》</span>
+				<span>《投资人权益协议》</span>
+			</view> -->
 			
 			<view class="next mybtn" @tap="next">
 				下一步
@@ -108,7 +110,7 @@
 		},
 		methods: {
 			getBelong(){
-				let obj = bankCardAttribution(this.bankaccount);
+				let obj = bankCardAttribution(this.bankaccount.replace(/\s/g,''));
 				this.belongBank = obj.bankName||'';
 			},
 			onConfirm(e,str){
@@ -140,7 +142,7 @@
 					phoneNum:this.phone
 				};
 				let url = '/user/openAccount/userOpenAccountGetVerCode';
-				this.$post(url, params,{baseUrl:'http://120.24.108.106:9092/'})
+				this.$post(url, params)
 					.then(res => {
 						if (res.code == 200) {
 							//this.serverCode = res.content.content;
@@ -152,6 +154,7 @@
 							this.isGetCode = false;
 						}
 					}).catch(res => {
+						this.$toast("获取验证码失败");
 						this.isGetCode = false;
 					})
 			},
@@ -194,7 +197,7 @@
 				this.$post(url,params,{baseUrl:'http://120.24.108.106:9092/'})
 				.then(data=>{
 					console.log(data);
-					this.$nav({url:'/pages/open-account/set-tradpwd'});
+					this.$nav({url:'/pages/index/index'},'switchTab');
 				})
 				.catch(err=>{
 					console.log(err);
@@ -248,7 +251,7 @@
 	color: #828282;
 	margin-top: 20rpx;
 	line-height: 32rpx;
-	span:nth-of-type(2){
+	span:nth-of-type(n+2){
 		color: #D3A35C;
 	}
 }

@@ -1,12 +1,12 @@
 <template>
 	<view class="l-container">
-		<view class="l-posi-parent" :class="{ 'l-posi-ab': isTitleNav }" @tap="$nav({ url: '/pages/search/search' })">
+		<view class="l-posi-parent" :class="{ 'l-posi-ab': isTitleNav }" @tap="goSearch">
 			<view class="l-posi-static">
 				<span class="l-icon l-icon-search"></span>
 				<view class="l-input">
-					<span class="l-input-1">复胜富盛一号</span>
-					<span class="l-input-2">累计收益</span>
-					<span class="l-input-3">80.53%</span>
+					<span class="l-input-2">搜索基金产品</span>
+					<!-- <span class="l-input-2">累计收益</span>
+					<span class="l-input-3">80.53%</span> -->
 				</view>
 				<span class="l-icon l-icon-go"></span>
 			</view>
@@ -14,20 +14,20 @@
 		
 		<view class="l-titleNView">
 			<view class="l-titleNView-bg">
-				<span class="l-icon l-icon-message" @tap="$nav({url:'/pages/notification/notification'})">
+				<!-- <span class="l-icon l-icon-message" @tap="$nav({url:'/pages/notification/notification'})">
 					<view class="ubt">{{ubt}}</view>
-				</span>
+				</span> -->
 			</view>
 			<view class="l-titleNView-place"></view>
 		</view>
 		
-		<view class="l-flex l-flex-jc_c" @tap="$nav({ url: '/pages/search/search' })">
+		<view class="l-flex l-flex-jc_c" @tap="goSearch">
 			<view class="l-posi-static l-posi-search">
 				<span class="l-icon l-icon-search"></span>
 				<view class="l-input l-flex l-flex-ai_c">
-					<span class="l-input-1">复胜富盛一号</span>
-					<span class="l-input-2">累计收益</span>
-					<span class="l-input-3">80.53%</span>
+					<span class="l-input-2">搜索基金产品</span>
+					<!-- <span class="l-input-2">累计收益</span>
+					<span class="l-input-3">80.53%</span> -->
 				</view>
 				<span class="l-icon l-icon-go"></span>
 			</view>
@@ -49,37 +49,37 @@
 			
 			<view class="uni-flex uni-column ptb">
 				<view class="uni-flex l-tab l-flex-jc_sa">
-					<view @tap="$nav({url:'/pages/cash-baby/cash-baby'})">
+					<view @tap="goCashBaby">
 						<image src="../../static/88@2x.png" mode=""></image>
 						<text>活期理财</text>
 					</view>
-					<view @tap="$nav({url:'/pages/finance-report/finance-report'})">
+					<view @tap="goFinanceReport">
 						<image src="../../static/22@2x.png" mode="aspectFill"></image>
 						<text>财经早报</text>
 					</view>
-					<view @tap="$nav({url:'/pages/product-rank/product-rank'})">
+					<view @tap="goProductRank">
 						<image src="../../static/11@2x.png" mode=""></image>
 						<text>基金排行</text>
 					</view>
-					<view @tap="$nav({url:'/pages/open-account/open-account'})">
+					<view @tap="$toast('暂未开放此功能')">
 						<image src="../../static/44@2x.png" mode=""></image>
 						<text>我的名片</text>
 					</view>
 				</view>
 				<view class="uni-flex l-tab l-flex-jc_sa l-mt">
-					<view @tap="$nav({url:'/pages/private-school/private-school'})">
+					<view @tap="goPrivateSchool">
 						<image src="../../static/66@2x.png" mode="aspectFill"></image>
 						<text>高端理财</text>
 					</view>
-					<view @tap="$nav({url:'/pages/approve/approve'})">
+					<view @tap="$nav({ url: '/pages/earnings/earnings' })">
 						<image src="../../static/77@2x.png" mode=""></image>
 						<text>资产助手</text>
 					</view>
-					<view @tap="$nav({url:'/pages/register/register'})">
+					<view @tap="$nav({url:'/pages/road/road'})">
 						<image src="../../static/666@2x.png" mode=""></image>
 						<text>路演直播</text>
 					</view>
-					<view @tap="$nav({url:'/pages/my-choice/my-choice'})">
+					<view @tap="goMyChioce">
 						<image src="../../static/10@2x.png" mode=""></image>
 						<text>我的自选</text>
 					</view>
@@ -95,7 +95,7 @@
 							速报
 						</view>
 						<view class="subaoc">
-							王老师分享财经早报，获得5个关注
+							王**分享财经早报，获得6个关注
 						</view>
 					</view>
 				</swiper-item>
@@ -105,7 +105,7 @@
 							速报
 						</view>
 						<view class="subaoc">
-							王老师分享财经早报，获得4个关注
+							刘**分享财经早报，获得8个关注
 						</view>
 					</view>
 				</swiper-item>
@@ -115,7 +115,27 @@
 							速报
 						</view>
 						<view class="subaoc">
-							王老师分享财经早报，获得3个关注
+							李**分享财经早报，获得5个关注
+						</view>
+					</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="l-flex l-flex-jc_c l-flex-ai_c subaoh">
+						<view class="subao">
+							速报
+						</view>
+						<view class="subaoc">
+							张**分享财经早报，获得4个关注
+						</view>
+					</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="l-flex l-flex-jc_c l-flex-ai_c subaoh">
+						<view class="subao">
+							速报
+						</view>
+						<view class="subaoc">
+							赵**分享财经早报，获得9个关注
 						</view>
 					</view>
 				</swiper-item>
@@ -212,7 +232,7 @@
 					</view>
 				</view>
 				<view class="thezone">
-					<view class="l-flex l-flex-ai_c l-bb thezone-item">
+					<view class="l-flex l-flex-ai_c l-bb thezone-item" @tap="goCastSurely">
 						<view class="thezone-l">
 							<image src="../../static/dtzq.png" mode=""></image>
 						</view>
@@ -225,7 +245,7 @@
 							</view>
 						</view>
 					</view>
-					<view class="l-flex l-flex-ai_c thezone-item">
+					<view class="l-flex l-flex-ai_c thezone-item" @tap="goSteady">
 						<view class="thezone-l">
 							<image src="../../static/wjzq.png" mode=""></image>
 						</view>
@@ -247,7 +267,7 @@
 						<view class="titleleft">
 							产品精选
 						</view>
-						<view class="titlemore">
+						<view class="titlemore" @tap="goPrivateSchool">
 							更多
 						</view>
 					</view>
@@ -296,11 +316,11 @@
 				<view class="zxzk pl pr">
 					<view class="uni-flex l-flex-jc_sb">
 						<view class="titleleft">
-							总管精选
+							iFund精选
 						</view>
-						<view class="uni-flex">
-							<view class="l-ib" v-for="(v,i) in zxzklabelList" :key="i" :class="{'l-ib-actived': zxzklabelListIndex == v.id}" @tap="zxzkTab(v.id,i)">{{v.name}}</view>
-						</view>
+						<scroll-view class="my-scroll" scroll-x="true">
+							<view class="l-ib" v-for="(v,i) in zxzklabelList" :key="i" :class="{'l-ib-actived': zxzklabelListIndex == v.cateId}" @tap="zxzkTab(v.cateId,i)">{{v.name}}</view>
+						</scroll-view>
 					</view>
 					<view class="uni-flex l-zb l-flex-jc_sb l-bb zxzkpb" v-for="(v,i) in windzxshList" :key='i' @tap="$nav({ url: '/pages/tabbar/windzxsh/windxsh-details?id='+ v.id + '&type='+ v.type })">
 						<view class="l-flex l-flex-direction l-flex-jc_sb">
@@ -323,6 +343,8 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex';
+	import {geth5} from '@/utils/geth5.js'	
 	export default {
 		data() {
 			return {
@@ -391,16 +413,31 @@
 				img:'../../static/1577935511@2x.png',
 				}],
 				
-				popupShow:false
+				popupShow:false,
+				
+				userId:'',
+				pageInfo:{
+					pageIndex:1,
+					pageSize:10
+				},
 			}
 		},
+		computed:{
+			...mapState({
+				hasLogin:'hasLogin',
+				qualified:'qualified',
+				user:'user'
+			})
+		},	
 		onLoad() {
-			//console.log('开启');
-		},
-		created() {
-			this.getSwiper();
-			this.getProductfeature();
-			this.windzxshFn(this.zxzklabelListIndex)
+			if(typeof this.$getStorage('user')==='object'){
+				let user = this.$getStorage('user').userInfo;
+				this.userId = user.id;				
+			}else{
+				this.userId = ''
+			}
+			console.log(this.userId);
+			this.init();
 		},
 		computed:{
 			hasLogin(){
@@ -441,6 +478,12 @@
 			}
 		},
 		methods: {
+			init(){
+				this.getSwiper();
+				this.getProductfeature();
+				this.windzxshLabelFn();
+				//this.windzxshFn(this.zxzklabelListIndex)
+			},
 			//获取轮播
 			getSwiper(){
 				let url = "/recourse/banner/list";
@@ -455,6 +498,23 @@
 			//轮播切换
 			change(e) {
 				this.current = e.detail.current;
+			},
+			windzxshLabelFn(){
+				let _this = this;
+				let params = {};
+				let url = 'news/newsCate';
+				
+				_this.$get(url, params)
+				.then(res => { 
+					if(res.code == 200){
+						let info = res.content || [];
+						
+						_this.zxzklabelList = info;
+						_this.zxzklabelListIndex = info[0].cateId;
+						console.log(_this.zxzklabelList);
+						_this.windzxshFn(_this.zxzklabelListIndex);
+					}
+				})
 			},
 			//总管精选切换
 			zxzkTab(id){
@@ -549,8 +609,113 @@
 				}).catch(err=>{
 					this.$toast(JSON.stringify(err));
 				})
-			}
+			},
 			
+			goH5(flag,gourl){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;				
+				}else{
+					this.userId = ''
+				}
+				if(this.userId){
+					geth5(flag,this.userId
+					).then(data=>{
+						this.$nav({url:`${gourl}?webSrc=${data}`})
+					}).catch(err=>{
+						/* if(err=='307'){
+							this.$nav({url:'/pages/register/register'})
+						} */
+					})
+				}else{				
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'})
+							},3000)
+						}
+					});
+				}	
+			},
+			goCashBaby(){
+				this.goH5('8','/pages/cash-baby/cash-baby')		
+			},
+			goProductRank(){
+				this.goH5('17','/pages/product-rank/product-rank')		
+			},
+			goPrivateSchool(){
+				this.goH5('5','/pages/private-school/private-school')	
+			},
+			goMyChioce(){
+				this.goH5('7','/pages/my-choice/my-choice')	
+			},
+			goCastSurely(){
+				this.goH5('15','/pages/cast-surely/cast-surely')	
+			},
+			goSteady(){
+				this.goH5('4','/pages/steady/steady')
+			},
+			goSearch(){
+				this.goH5('6','/pages/search/search')
+			},
+			goMinePage(gourl){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;				
+				}else{
+					this.userId = ''
+				}
+				if(this.userId){
+					geth5('5',this.userId
+					).then(data=>{
+						this.$nav({url:`${gourl}`})
+					}).catch(err=>{
+						/* if(err=='307'){
+							this.$nav({url:'/pages/register/register'})
+						} */
+					})
+				}else{				
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'})
+							},3000)
+						}
+					});
+				}	
+			},
+			goFinanceReport(){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;				
+				}else{
+					this.userId = ''
+				}
+				if(this.userId){
+					this.$post('cms/dailyFinanceNews',{
+						userId:this.userId,
+						pageInfo:this.pageInfo
+					}).then(data=>{
+						//console.log(data);
+						if(data.code=='309'){
+							this.$nav({url:'/pages/personal-card/person-edit?personalFlag=1'})	
+						}else{
+							this.$nav({url:'/pages/finance-report/finance-report'}); 
+						}
+					}).catch(err=>{
+						this.$toast(JSON.stringify(err));
+					})
+				}else{				
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'})
+							},3000)
+						}
+					});
+				}	
+				
+			}
 		}
 	}
 </script>

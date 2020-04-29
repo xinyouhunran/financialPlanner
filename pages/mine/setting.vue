@@ -8,15 +8,15 @@
 				</view>
 				<image src="../../static/right@2x.png" mode=""></image>
 			</view>
-			<view class="l-flex l-flex-jc_sb box l-bb" @tap="$nav({url:'/pages/mine/update-tradpwd'})">
+			<!-- <view class="l-flex l-flex-jc_sb box l-bb" @tap="$nav({url:'/pages/mine/update-tradpwd'})">
 				<view class="">
 					修改交易密码
 				</view>
 				<image src="../../static/right@2x.png" mode=""></image>
-			</view>
+			</view> -->
 			<view class="l-flex l-flex-jc_sb box" @tap="$nav({url:'/pages/mine/aboutus'})">
 				<view class="">
-					关于融总管
+					关于iFund
 				</view>
 				<image src="../../static/right@2x.png" mode=""></image>
 			</view>

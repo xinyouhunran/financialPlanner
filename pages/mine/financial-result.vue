@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="financial-result">
-			<template>
+			<template v-if="employmentCertStatus=='0'">
 				<view class="l-flex l-flex-direction l-flex-ai_c">
 					<image src="../../static/result/cg@2x.png" mode=""></image>
 					<view class="title">
@@ -9,7 +9,7 @@
 					</view>
 				</view>		
 			</template>
-			<template>
+			<template v-if="employmentCertStatus=='1'">
 				<view class="l-flex l-flex-direction l-flex-ai_c">
 					<image src="../../static/result/dd@2x.png" mode=""></image>
 					<view class="title">
@@ -20,14 +20,14 @@
 					</view>
 				</view>		
 			</template>
-			<template>
+			<template v-if="employmentCertStatus=='2'">
 				<view class="l-flex l-flex-direction l-flex-ai_c">
 					<image src="../../static/result/sb@2x.png" mode=""></image>
 					<view class="title">
 						认证失败
 					</view>
 					<view class="reason">
-						失败原因：您的名片不清晰
+						失败原因：{{result.authReason}}
 					</view>
 				</view>		
 			</template>
@@ -38,7 +38,7 @@
 						机构类型
 					</view>
 					<view class="">
-						私募
+						{{myresult.orgTypeName||'--'}}
 					</view>
 				</view>
 				<view class="item">
@@ -46,12 +46,12 @@
 						公司名称
 					</view>
 					<view class="">
-						深圳市前海阳鸿有限公司
+						{{myresult.orgName}}
 					</view>
 				</view>
 			</view>
 			
-			<view class="mybtn resubmit">
+			<view class="mybtn resubmit" @tap="reSubmit">
 				重新提交
 			</view>
 		</view>	
@@ -59,14 +59,51 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex';
 	export default {
 		data() {
 			return {
-				
+				userId:'',
+				myresult:{}
 			}
 		},
+		computed:{
+			...mapState({
+				user:'user',
+				employmentCertStatus:'employmentCertStatus'
+			})
+		},
+		onLoad() {
+			this.init()
+		},
 		methods: {
-			
+			init(){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;
+					this.employmentCertQuery();
+				}else{
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							this.$nav({url:'/pages/register/register'});
+						}
+					});
+				}
+				
+			},
+			reSubmit(){
+				this.$nav({url:'/pages/mine/financial-institution'}); 
+			},
+			employmentCertQuery(){
+				let url = 'user/center/finance/employmentCertQuery';
+				this.$post(url,{
+					userId:this.userId
+				}).then(res=>{
+					this.myresult = res;
+				}).catch(err=>{
+					console.log(err);
+				})
+			}
 		}
 	}
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="l-status"></view>
+		<!-- <view class="l-status"></view>
 		<view class="product-rank">
 			<view class="public-private l-flex l-flex-ai_c l-flex-jc_sb l-view">
 				<view class="l" @tap="$back(1)">
@@ -24,23 +24,11 @@
 					<ms-dropdown-menu @close="close1">
 						<ms-dropdown-item v-model="proTypeIndex" :list="productType" ref="dropdownItem"></ms-dropdown-item>
 					</ms-dropdown-menu>
-					<!-- <view class="">
-						全部
-					</view>
-					<view class="">
-						<image src="../../static/down@2x.png" mode=""></image>
-					</view> -->
 				</view>
 				<view class="l-flex l-flex-ai_c">
 					<ms-dropdown-menu @close="close">
 						<ms-dropdown-item v-model="proTimeIndex" :list="productTime" ref="dropdownItem1"></ms-dropdown-item>
 					</ms-dropdown-menu>
-					<!-- <view class="">
-						近一年
-					</view>
-					<view class="">
-						<image src="../../static/down@2x.png" mode=""></image>
-					</view> -->
 				</view>
 			</view>
 			
@@ -100,11 +88,13 @@
 					</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
+		<web-view :src="webSrc" v-if="webSrc"></web-view>
 	</view>
 </template>
 
 <script>
+	import {geth5} from '@/utils/geth5.js'
 	import msDropdownMenu from '@/components/ms-dropdown/dropdown-menu.vue'
 	import msDropdownItem from '@/components/ms-dropdown/dropdown-item.vue'
 	export default {
@@ -114,6 +104,10 @@
 		},
 		data() {
 			return {
+				userId:'',
+				flag:'17',
+				webSrc:'',
+				
 				value:1,
 				focusvalue:0,
 				
@@ -187,6 +181,29 @@
 					text:'近一年',
 					value:6
 				}],	
+			}
+		},
+		onLoad(obj) {
+			if(typeof this.$getStorage('user')==='object'){
+				let user = this.$getStorage('user').userInfo;
+				this.userId = user.id;
+				this.$toast('正在加载...',{duration:4000})
+				geth5(this.flag,this.userId
+				).then(data=>{
+					this.webSrc = data;
+				}).catch(err=>{
+					/* if(err=='307'){
+						this.$nav({url:'/pages/register/register'})
+					} */
+				})
+			}else{
+				this.$toast('您还未登录，即将跳转登录页',{
+					fn:()=>{
+						setTimeout(()=>{
+							this.$nav({url:'/pages/register/register'})
+						},3000)
+					}
+				});
 			}
 		},
 		beforeMount() {

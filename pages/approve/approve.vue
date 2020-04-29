@@ -4,7 +4,7 @@
 			
 			<view class="l-body-item l-body-item-1" v-if="isYes">
 				<view class="l-title">
-					合格投资者认定-融总管
+					合格投资者认定
 				</view>
 				<view class="l-issue">
 					根据《私募投资基金监督管理暂行办法》的规定，私募基金的合格投资者是指具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的机构和个人： (一)净资产不低于1000万元的机构； (二)金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。 前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。 此外，下列投资者视为合格投资者： (一)社会保障基金、企业年金、慈善基金； (二)依法设立并受国务院金融监督管理机构监管的投资计划； (三)投资于所管理私募基金的私募基金管理人及其从业人员； (四)中国证监会规定的其他投资者。 如果您接受此认定，即表明您已承诺符合《私募投资基金监督管理暂行办法》中的合格投资者标准,是私募基金的合格投资者。
@@ -14,10 +14,10 @@
 						<span class="l-select l-icon l-icon-select" :class="{ 'l-icon-selected': investorType == 'A' }"></span>
 						<span>️我已阅读并符合此认定（个人）</span>
 					</view>
-					<view class="l-option-item" @tap="investorType = 'B'">
+					<!-- <view class="l-option-item" @tap="investorType = 'B'">
 						<span class="l-select l-icon l-icon-select" :class="{ 'l-icon-selected': investorType == 'B' }"></span>
 						<span>我已阅读并符合此认定（机构）</span>
-					</view>
+					</view> -->
 				</view>
 				
 				<view class="next" @tap="nextTip">
@@ -487,7 +487,9 @@
 				.then(res => {
 					if(res.code == 200){
 						this.$store.dispatch('getUserFn')
-						this.$back()
+						this.$nav({
+							url: '/pages/evaluating/evaluating'
+						}, 'redirectTo');
 					}else{
 						this.$toast(res.message);
 					}

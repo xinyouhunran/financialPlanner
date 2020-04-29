@@ -161,18 +161,20 @@
 									}).then(data=>{
 										this.$nav({url:`/pages/register/pass-login?userName=${userName}`});
 									}).catch(err=>{
-										console.log(1,err);
+										this.$toast('1')
 									})
+								}else{
+									this.$nav({url:`/pages/register/pass-login?userName=${userName}`});
 								}
 							})
 							.catch(err=>{
-								console.log(2,err)
+								this.$toast('2')
 							})				
 						} else if (res.code == 404) {
-							console.log('404')
+							this.$toast('404')
 						}
-					}).catch(res => {
-				
+					}).catch(err => {
+						this.$toast('3');
 					})
 			}
 		}

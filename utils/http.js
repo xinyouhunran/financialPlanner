@@ -71,6 +71,10 @@ const $api = {
 				method: 'POST',
 				success(res) {
 					//resolve(res.data)
+					if(res.statusCode==200){
+						resolve(res.data);
+						return;
+					}
 					if (res.data && res.data.code == '200') {
 						resolve(res.data)
 					} else {
@@ -88,7 +92,6 @@ const $api = {
 					}
 				},
 				fail(err) {
-					util.$toast('请求失败');
 					reject(err, -1);
 				},
 				complete(res) {

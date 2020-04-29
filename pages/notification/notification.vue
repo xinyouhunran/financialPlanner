@@ -62,7 +62,7 @@
 			
 			<view class="noticemsg l-flex" @tap="$nav({url:'/pages/notification/system-infor'})">
 				<view class="noticeimg">
-					<image src="../../static/gx@2x.png" mode=""></image>
+					<image src="../../static/xttz.png" mode=""></image>
 				</view>
 				<view class="l-flex l-flex-direction l-flex-jc_sb l-flex-1">
 					<view class="l-flex l-flex-jc_sb">
@@ -91,7 +91,32 @@
 		</view>
 		
 		<view class="privatemes">
-			<view class="noticemsg l-flex" @longpress="bindClick(index)" @click.stop="chatDetail(index)">
+			<view class="chat-list uni-padding-wrap" >
+				<!-- <navigator url="../friend-invitiaon/friend-invitiaon">
+					<uni-list-item title="好友通知" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" :badge-text="String(newFriendInvitiaon)"
+					 :show-badge="newFriendInvitiaon?true:false" />
+				</navigator> -->
+			
+			
+					<view class="scroll-do">
+			
+						<view class="uni-flex uni-row items" @longpress="bindClick(index)" @click.stop="chatDetail(index)" v-for="(item,index) in lists" :key="index" >
+							<view class="flex-item image">
+								<image class="img" :src="item.avatar  || '../../static/ren@2x.png'" mode="aspectFill"></image>
+								<view class="badge" v-if="item.target.isNoDisturb == false && item.unreadCount != ''">{{item.unreadCount}}</view>
+							</view>
+							<view class="flex-item contents">
+								<view class="title">
+									{{item.title}}
+									<text>{{item.lastMessageTime}}</text>
+								</view>
+								<view class="text-small">{{item.lastMessageText}}</view>
+							</view>
+						</view>
+					</view>
+				<!-- </view> -->
+			</view>
+			<!-- <view class="noticemsg l-flex" @longpress="bindClick(index)" @click.stop="chatDetail(index)">
 				<view class="noticeimg">
 					<image src="../../static/picture.png" mode=""></image>
 				</view>
@@ -118,7 +143,7 @@
 						</view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -165,7 +190,7 @@
 				let _this = this;
 				_this.$showModal('您还未登录，是否立即去登录?',{
 					success(){
-						_this.$nav({ url: '/pages/login/login' })
+						_this.$nav({ url: '/pages/register/register' })
 					},
 					error(){
 						_this.$nav({ url: '/pages/index/index' }, 'switchTab')
@@ -263,7 +288,7 @@
 				uni.navigateTo({
 					url: '/pages/im-chat/im-chat?title=' + title + '&fromUser=' + item.target.username
 				});
-				
+				 
 			}
 		}
 	}
@@ -276,6 +301,10 @@
 }
 .publicmes{
 	margin-bottom: 20rpx;
+}
+.privatemes{
+	padding: 24rpx;
+	background-color: #FFFFFF;
 }
 .noticemsg{
 	padding: 24rpx;

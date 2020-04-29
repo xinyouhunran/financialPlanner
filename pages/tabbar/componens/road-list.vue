@@ -1,7 +1,7 @@
 <template>
 	<view class="l-module-item" @tap="$nav({url: '/pages/tabbar/road/road-details?id=' + dataInfo.id})">
 		<view class="l-module-top">
-			<image class="l-img-banner" lazy-load :src="dataInfo.coverImageUrl || ''" mode="aspectFit"></image>
+			<image class="l-img-banner" lazy-load :src="dataInfo.coverH5ImageUrl || ''" mode="aspectFit"></image>
 			<view class="l-view-posi">
 				<text class="l-icon l-icon-stop"></text>
 				<text class="l-mt-date">{{ dataInfo.duration || '' }}</text>

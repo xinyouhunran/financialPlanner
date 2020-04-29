@@ -26,7 +26,9 @@
         }
         ,{
             "path" : "pages/im-chat/im-chat",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "聊天"
+			}
         }
         ,{
             "path" : "components/ink-knife/ink-knife",
@@ -35,9 +37,10 @@
         ,{
             "path" : "pages/search/search",
             "style": {
-            	"app-plus": {
+            	/* "app-plus": {
             		"titleNView": false
-            	}
+            	} */
+				"navigationBarTitleText": "基金搜索"
             }
         }
         ,{
@@ -94,9 +97,10 @@
         ,{
             "path" : "pages/onsale/onsale",
             "style" : {
-				"app-plus": {
+				/* "app-plus": {
 					"titleNView": false
-				}
+				} */
+				"navigationBarTitleText": "在售"
 			}
         }
 		,{
@@ -143,7 +147,7 @@
             "path" : "pages/mine/aboutus",
             "style" : {
 				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "关于融总管",
+				"navigationBarTitleText": "关于iFund",
 				"navigationBarBackgroundColor": "#EDEDED"
 			}
         }
@@ -163,14 +167,22 @@
 				}
 			}
         }
-        ,{
+        /* ,{
             "path" : "pages/cash-baby/cash-baby",
             "style" : {
 				"app-plus": {
 					"titleNView": false
 				}
 			}
-        }
+        } */
+		,{
+		    "path" : "pages/cash-baby/cash-baby",
+		    "style" : {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "活期理财",
+				"navigationBarBackgroundColor": "#EDEDED"
+			}
+		}
         ,{
             "path" : "pages/cash-baby/deposit",
             "style" : {
@@ -215,14 +227,20 @@
 				"navigationBarBackgroundColor": "#EDEDED"
 			}
         }
-        ,{
+        /* ,{
             "path" : "pages/product-rank/product-rank",
             "style" : {
 				"app-plus": {
 					"titleNView": false
 				}
 			}
-        }
+        } */
+		,{
+		    "path" : "pages/product-rank/product-rank",
+		    "style" : {
+				"navigationBarTitleText": "基金排行"
+			}
+		}
         ,{
             "path" : "pages/theme-fund/theme-fund",
             "style" : {
@@ -242,7 +260,7 @@
         ,{
             "path" : "pages/private-school/private-school",
             "style" : {
-				"navigationBarTitleText": "私募学堂",
+				"navigationBarTitleText": "高端理财",
 				"navigationBarBackgroundColor": "#FFFFFF"
 			}
         },{
@@ -274,12 +292,18 @@
 				"navigationBarTitleText": "记账详情"
 			}
 		},
-		{
+		/* {
 			"path": "pages/my-choice/my-choice",
 			"style": {
 				"app-plus": {
 					"titleNView": false
 				}
+			}
+		}, */
+		{
+			"path": "pages/my-choice/my-choice",
+			"style": {
+				"navigationBarTitleText": "我的自选"
 			}
 		},
 		{
@@ -333,9 +357,12 @@
 		{
 			"path": "pages/open-account/open-account",
 			"style" : {
-				"navigationBarTextStyle": "black",
+				/* "navigationBarTextStyle": "black",
 				"navigationBarTitleText": "基金交易开户",
-				"navigationBarBackgroundColor": "#EDEDED"
+				"navigationBarBackgroundColor": "#EDEDED" */
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
@@ -453,9 +480,137 @@
 		{
 			"path": "pages/tool/customer-manager",
 			"style": {
-				"navigationBarTitleText": "客户管理"
+				"navigationBarTitleText": "客户管理",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/tool/customer-detail",
+			"style": {
+				"navigationBarTitleText": "客户详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/tool/data-track",
+			"style": {
+				"navigationBarTitleText": "数据跟踪",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/tool/data-track-detail",
+			"style": {
+				"navigationBarTitleText": "数据详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/tool/product-add",
+			"style": {
+				"navigationBarTitleText": "添加产品",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/tool/select-attachment",
+			"style": {
+				"navigationBarTitleText": "选择附件",
+				"navigationBarBackgroundColor": "#FFFFFF"
 			}
 		}
+        ,{
+            "path" : "pages/tool/tvm",
+            "style" : {
+				"navigationBarTitleText": "TVM",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+        }
+        ,{
+            "path" : "pages/product-details/add-product-detail",
+            "style" : {
+            	"navigationBarTextStyle": "black",
+            	"navigationBarTitleText": "产品详情",
+            	"navigationBarBackgroundColor": "#EDEDED"
+            }
+        }
+		,{
+			"path": "pages/evaluating/evaluating",
+			"style": {
+				"navigationBarTitleText": "风险评测"
+			}
+		}
+        ,{
+            "path" : "pages/cast-surely/cast-surely",
+            "style" : {
+				"navigationBarTitleText": "定投专区"
+			}
+        }
+        ,{
+            "path" : "pages/steady/steady",
+            "style" : {
+				"navigationBarTitleText": "稳健专区"
+			}
+        }
+        ,{
+            "path" : "pages/mine/asset-overview",
+            "style" : {
+				"navigationBarTitleText": "资产总览"
+			}
+        }
+        ,{
+            "path" : "pages/information/road-infor",
+            "style" : {
+				"navigationBarTitleText": "资讯"
+			}
+        }
+        ,{
+            "path" : "pages/tool/product-manage",
+            "style" : {
+				"app-plus": {
+					"titleNView": false,
+					"bounce":"none"
+				}
+			}
+        }
+        ,{
+            "path" : "pages/mine/financial-institution",
+            "style" : {
+				"navigationBarTitleText": "选择公司/机构类型"
+			}
+        }
+		,{
+		    "path" : "pages/tabbar/road/road-details",
+		    "style" : {
+				"app-plus": {
+					"titleNView": false 
+				}
+			}
+		}
+        ,{
+            "path" : "pages/register/forget-pass",
+            "style" : {
+				"navigationBarTitleText": "设置新的登录密码"
+			}
+        }
+		,{
+		    "path" : "pages/company-details/company-details",
+		    "style" : {
+				"navigationBarTitleText": "进店"
+			}
+		}
+        ,{
+            "path" : "pages/register/user-agreement",
+            "style" : {
+				"navigationBarTitleText": "用户协议"
+			}
+        }
+        ,{
+            "path" : "pages/open-account/bink-transfer",
+            "style" : {
+				"navigationBarTitleText": "银行转账授权协议"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -486,14 +641,14 @@
 				"iconPath":"static/zs2@3x.png",
 				"selectedIconPath":"static/zs1@3x.png"
 			},
-			{
+			/* {
 				"pagePath":"pages/tool/tool",
 				"text":"工具",
 				"iconPath":"static/zy2@3x.png",
 				"selectedIconPath":"static/zy1@3x.png"
-			},
+			}, */
 			{
-				"pagePath":"pages/information/information",
+				"pagePath":"pages/information/road-infor",
 				"text":"资讯",
 				"iconPath":"static/zx2@3x.png",
 				"selectedIconPath":"static/zx1@3x.png"

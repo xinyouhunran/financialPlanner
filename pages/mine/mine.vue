@@ -3,23 +3,23 @@
 		<view class="mine">
 			<view class="l-status"></view>
 	
-			<span class="l-icon l-icon-message" @tap="$nav({url:'/pages/notification/notification'})">
-				<view class="ubt">7</view>
+			<span class="l-icon l-icon-message">
+				<!-- <view class="ubt" @tap="$nav({url:'/pages/notification/notification'})">7</view> -->
 			</span>
 			<view class="l-flex mine-head l-flex-ai_c">
-				<image src="../../static/finance/tx@3x.png" mode="aspectFill" @tap="getImage"></image>
+				<image :src="user.headPortrait ? user.headPortrait :'../../static/finance/tx@3x.png'" mode="aspectFill" @tap="getImage"></image>
 				<view class="l-flex l-flex-direction l-flex-1" v-if="hasLogin">
 					<view class="l-flex">
 						<view class="l-p">
-							李丽华
+							{{ user.fullName || user.userName }}
 						</view>
-						<view class="l-span">
+						<view class="l-span" v-if="user.invite">
 							邀请码:23ue6
 						</view>
 					</view>
 					<view class="l-flex l-flex-jc_sb l-phone">
 						<view class="">
-							诺亚财富
+							{{user.orgName || '--'}}
 						</view>
 						<view class="l-flex l-flex-ai_c" @tap="$nav({url:'/pages/mine/person-main'})">
 							<view>
@@ -32,13 +32,13 @@
 					</view>				
 				</view>
 				
-				<view class="gologin" v-else @tap="$nav({url:'/pages/register/pass-login'})">
+				<view class="gologin" v-else @tap="$nav({url:'/pages/register/register'})">
 					登录/注册
 				</view>
 			</view>
 		</view>
 		
-		<view class="one-line">
+		<view class="one-line" @tap="goAssetOverview">
 			<view class="line-operation">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/zc@2x.png" mode="aspectFill"></image>
@@ -47,16 +47,16 @@
 					</view>
 				</view>
 				<view class="l-flex l-flex-ai_c right">
-					<view class="">
-						{{hasLogin?'0.16':'--'}}
-					</view>
+					<!-- <view class="">
+						{{hasLogin?'0.16':''}}
+					</view> -->
 					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
 		</view>
 		
 		<view class="four-line">
-			<view class="line-operation l-bb">
+			<view class="line-operation l-bb" @tap="goAttention">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/gz@2x.png" mode="aspectFill"></image>
 					<view class="">
@@ -70,7 +70,7 @@
 					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
-			<view class="line-operation">
+			<!-- <view class="line-operation">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/ht@2x.png" mode="aspectFill"></image>
 					<view class="">
@@ -80,23 +80,23 @@
 				<view class="l-flex l-flex-ai_c right">
 					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		
 		<view class="three-line">
 			<view class="l-bb title">
 				金融从业者
 			</view>
-			<view class="line-operation">
+			<view class="line-operation" @tap="goFinancialInstitution">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/r@2x.png" mode="aspectFill"></image>
 					<view class="">
 						金融从业者
 					</view>
 				</view>
-				<view class="l-flex l-flex-ai_c right" @tap="$nav({url:'/pages/mine/financial-certification'})">
+				<view class="l-flex l-flex-ai_c right">
 					<view class="">
-						{{hasLogin?qualified?'':'未认证':'未认证'}}
+						{{hasLogin?employmentCertStatus=='0'?'':'未认证':'未认证'}}
 					</view>
 					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
@@ -106,7 +106,7 @@
 			<view class="l-bb title">
 				合格投资者
 			</view>
-			<view class="line-operation l-bb">
+			<view class="line-operation l-bb"  @tap="goApprove">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/dd@2x.png" mode="aspectFill"></image>
 					<view class="">
@@ -120,7 +120,7 @@
 					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
-			<view class="line-operation">
+			<!-- <view class="line-operation">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/lc@2x.png" mode="aspectFill"></image>
 					<view class="">
@@ -133,12 +133,12 @@
 					</view>
 					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		
 		
 		<view class="three-line">
-			<view class="line-operation l-bb">
+			<view class="line-operation l-bb" @tap="$nav({url:'/pages/feedback/feedback'})">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/fk@2x.png" mode="aspectFill"></image>
 					<view class="">
@@ -152,7 +152,7 @@
 					<image src="../../static/right@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
-			<view class="line-operation" @tap="$nav({url:'/pages/mine/setting'})" id="set">
+			<view class="line-operation" @tap="goSetting" id="set">
 				<view class="l-flex l-flex-ai_c left">
 					<image src="../../static/mine/sz@2x.png" mode="aspectFill"></image>
 					<view class="">
@@ -176,16 +176,22 @@
 
 <script>
 	import {mapState} from 'vuex';
+	import {geth5} from '@/utils/geth5.js'	
 	export default {
 		data() {
 			return {
-				
+				headPortrait:'',
+				tempFilePaths:[],
+				userId:''
 			}
 		},
 		computed:{
 			...mapState({
 				hasLogin:'hasLogin',
-				qualified:'qualified'
+				qualified:'qualified',
+				user:'user',
+				employmentCertStatus:'employmentCertStatus',
+				userCardInfo:'userCardInfo'
 			})
 			/* isLogin(){
 				return this.$store.state.hasLogin
@@ -194,23 +200,179 @@
 				return this.$store.state.qualified
 			} */
 		},
-		mounted() {
-			
+		onLoad() {
+			if(typeof this.$getStorage('user')==='object'){
+				let user = this.$getStorage('user').userInfo;
+				this.userId = user.id;				
+			}else{
+				this.userId = ''
+			}
+			console.log(this.userId);
 		},
 		methods: {
 			getImage(){
 				uni.chooseImage({
 					count:1,
+					sizeType: ['original', 'compressed'],
+					sourceType:['album'],
 					success: (res) => {
 						console.log(res);
-						console.log(this);
-						uni.previewImage({
-							urls:res.tempFilePaths,
-							success: ()=>{
-							}
-						})
+						let tempFilePaths = this.tempFilePaths = res.tempFilePaths;
+						console.log(tempFilePaths);
+						this.uploadAjax(tempFilePaths);
 					}
 				})
+			},
+			uploadAjax(filePaths){
+				let url = 'user/center/img/upload';
+				let params = {
+					formData:{
+						type: 0
+					}
+				}
+				console.log(filePaths[0]);
+				this.$upload(url, filePaths[0], params)
+				.then(res => {
+					if(res.code == 200){
+						this.headPortrait = res.content && res.content.lmtSrc || '';
+						this.submit();
+					}else{
+						this.$toast(res.message);
+					}
+				});
+			},
+			submit(){
+				let params = { headPortrait: this.headPortrait };
+				let url = 'user/center/info/update';
+				this.$post(url, params)
+				.then(res => {
+					if(res.code == 200){
+						this.$store.dispatch('getUserFn');
+						this.$toast('修改头像成功');
+						// #ifdef APP-PLUS
+						/* let imgPath = {
+							"imgPath":this.tempFilePaths[0]
+						};
+						this.$store.dispatch("updateMyAvatar", imgPath).then() */
+						// #endif
+					}else{
+						this.$toast(res.message)
+					}
+				})
+			},
+			autonym() {
+				this.$nav({
+					url: '/pages/autonym/autonym'
+				})
+			},
+			goH5(flag,gourl){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;				
+				}else{
+					this.userId = ''
+				}
+				if(this.userId){
+					geth5(flag,this.userId
+					).then(data=>{
+						this.$nav({url:`${gourl}?webSrc=${data}`})
+					}).catch(err=>{
+						/* if(err=='307'){
+							this.$nav({url:'/pages/register/register'})
+						} */
+					})
+				}else{				
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'})
+							},3000)
+						}
+					});
+				}	
+			},
+			goMinePage(gourl){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;				
+				}else{
+					this.userId = ''
+				}
+				if(this.userId){
+					geth5('5',this.userId
+					).then(data=>{
+						this.$nav({url:`${gourl}`})
+					}).catch(err=>{
+						/* if(err=='307'){
+							this.$nav({url:'/pages/register/register'})
+						} */
+					})
+				}else{				
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'})
+							},3000)
+						}
+					});
+				}	
+			},
+			goAssetOverview(){
+				this.goH5('8','/pages/mine/asset-overview')		
+			},
+			goAttention(){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;				
+				}else{
+					this.userId = ''
+				}
+				if(this.userId){
+					this.$nav({url:`/pages/attention/attention`})
+				}else{				
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'})
+							},3000)
+						}
+					});
+				}	
+				//this.goMinePage('/pages/attention/attention')
+			},
+			goFinancialInstitution(){
+				if(!this.employmentCertStatus){
+					this.goMinePage('/pages/mine/financial-institution')
+				}else{
+					this.goMinePage('/pages/mine/financial-result')
+				}	
+			},
+			goApprove(){
+				if(this.qualified){
+					this.goMinePage('/pages/evaluating/evaluating')
+				}else{
+					this.goMinePage('/pages/approve/approve')
+				}
+			},
+			goSetting(){
+				if(typeof this.$getStorage('user')==='object'){
+					let user = this.$getStorage('user').userInfo;
+					this.userId = user.id;				
+				}else{
+					this.userId = ''
+				}
+				if(this.userId){
+					this.$nav({url:`/pages/mine/setting`})
+				}else{				
+					this.$toast('您还未登录，即将跳转登录页',{
+						fn:()=>{
+							setTimeout(()=>{
+								this.$nav({url:'/pages/register/register'})
+							},3000)
+						}
+					});
+				}	
+				//this.goMinePage('/pages/mine/setting')
 			}
 		}
 	}
@@ -230,7 +392,7 @@
 .l-icon-message{
 	width: 40rpx;
 	height: 36rpx;
-	background-image: url('~@/static/xx@2x.png');
+	/* background-image: url('~@/static/xx@2x.png'); */
 	margin-top: 44rpx;
 	margin-left: 632rpx;
 	display: inline-block;
@@ -255,7 +417,8 @@
 	color: #FFFFFF;
 	image{
 		width: 144rpx;
-		height: 144rpx;	
+		height: 144rpx;
+		border-radius: 144rpx;
 	}
 	.l-p{
 		margin-left: 28rpx;

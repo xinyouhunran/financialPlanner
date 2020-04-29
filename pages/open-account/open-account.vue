@@ -1,5 +1,17 @@
 <template>
 	<view class="container">
+		<view class="l-status"></view>
+		<view class="l-toptitle">
+			<view class="" @tap="$nav({url:'/pages/index/index'},'switchTab')">
+				<image src="../../static/back@2x.png" mode=""></image>
+			</view>
+			<view class="">
+				基金交易开户
+			</view>
+			<view class="">
+				
+			</view>
+		</view>
 		<view class="open-account">
 			<account-tip :tip1="true" :tip2="false" :tip3="false"></account-tip>
 			
@@ -59,7 +71,7 @@
 			//检查姓名
 			checkName() {
 			  if(!NEWCHECKNAME4.test(this.name)||this.name.length<2){
-			    this.$toast("请输入2~15字纯中文，或中文与“.”或“•”字符组合,且要以中文开头与结尾",{duration:3000});
+			    this.$toast("您输入的姓名有误",{duration:3000});
 			    return false;
 			  }else{
 				  return true;
@@ -68,7 +80,7 @@
 			checkId() {
 			    this.id_cardchuli = this.idCard.replace(/\s/g,'');
 			    if (!testIdCard(this.id_cardchuli)) {
-			      this.$toast('请填写正确的身份证号码',{duration:3000});
+			      this.$toast('您输入的身份证号码有误',{duration:3000});
 				  return;
 			    }else{
 					return true;

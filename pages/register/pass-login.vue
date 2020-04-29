@@ -10,7 +10,7 @@
 				</view>
 				<template>
 					<input type="text" v-model="password" placeholder="请输入6-18位英文/数字" placeholder-class="placeclass" v-if="isShowPwd"/>
-					<input type="password" v-model="password" placeholder="请输入6-18位英文/数字" placeholder-class="placeclass" v-else/>
+					<input type="password" v-model="password" placeholder="请输入6-18位英文/数字" placeholder-class="placeclass" v-else maxlength="18"/>
 				</template>
 				<span class="l-icon l-icon-kj" v-if="isShowPwd" @tap="isShowPwd = !isShowPwd"></span>
 				<span class="l-icon l-icon-bkj" v-if="!isShowPwd" @tap="isShowPwd = !isShowPwd"></span>
@@ -19,7 +19,7 @@
 				<view class="" @tap="$nav({url:`/pages/register/vertify-login?userName=${userName}`})">
 					验证码登录
 				</view>
-				<view class="" @tap="$nav({url:`/pages/register/register-invite?userName=${userName}`})">
+				<view class="" @tap="$nav({url:`/pages/register/forget-pass?userName=${userName}`})">
 					忘记密码？
 				</view>
 			</view>
@@ -36,7 +36,8 @@
 			return {
 				isShowPwd:false,
 				password:'',
-				userName:''
+				userName:'',
+				setInfo: 'user/center/info/update',
 			}
 		},
 		onLoad(obj) {
@@ -75,7 +76,40 @@
 									this.$store.dispatch('register', res.content);
 								} */
 							this.$store.dispatch('setToken', res.content);
-							this.$nav({url:"/pages/open-account/open-account"});
+							this.$store.dispatch('setUser',res.content)
+							.then(data=>{
+								if(typeof this.$getStorage('user')==='object'){
+									let user = this.$getStorage('user').userInfo;
+									let userId = user.id;
+									this.$post('user/openAccount/getUserOpenAccountInfo',{
+										userId
+									}).then(data=>{
+										if(data.code=='200'){
+											this.$nav({url:'/pages/index/index'},'switchTab');
+										}else{
+											this.$nav({url:"/pages/open-account/open-account"});
+										}
+									}).catch(err=>{
+										this.$toast(JSON.stringify(err))
+									})
+								}else{
+									this.$toast('您还未登录，即将跳转登录页',{
+										fn:()=>{
+											this.$nav({url:'/pages/register/register'});
+										}
+									});
+								}
+								
+							}).catch(err=>{
+								console.log('err');
+							})
+							
+							
+							/* if(!res.content.userInfo.jgInfo){
+								this.up();
+								this.$store.dispatch('register', res.content);
+							} */
+							
 							//this.$nav({url:"/pages/index/index"},"switchTab");					
 						} else if (res.code == 404) {
 							console.log(404)
@@ -86,7 +120,17 @@
 			
 					})
 			},
-			
+			/**
+			 * 注册im
+			 */
+			up(){
+				let params = { jgInfo:true };
+				let url = this.setInfo;
+				this.$post(url, params)
+					.then(res => {
+						if (res.code == 200) {}
+					})
+			},
 		}
 	}
 </script>

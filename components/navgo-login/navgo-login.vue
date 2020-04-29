@@ -19,7 +19,7 @@
 		methods:{
 			onShowLogin(){
 				// this.$emit('onShowLogin')
-				this.$nav({ url: '/pages/register/pass-login' })
+				this.$nav({ url: '/pages/register/register' })
 			}
 		}
 	}

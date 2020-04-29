@@ -234,7 +234,7 @@
 		width: 30rpx;
 		height: 30rpx;
 		margin-right: 12rpx;
-		background-image: url('~@/static/sousuo@2x.png');
+		background-image: url('~@/static/windzxsh/sousuo@2x.png');
 	}
 	
 	
